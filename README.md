@@ -1,75 +1,18 @@
-# React + TypeScript + Vite
+# hansung-agent-rag
+한성대학교 웹사이트 맞춤형 AI 에이전트 개발 프로젝트 (SUDO AI RAG Team)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🤖 Hansung Univ. AI Agent (SUDO RAG Team)
+본 레포지토리는 SUDO 소모임 RAG 팀이 개발하는 '한성대학교 맞춤형 지능형 학사 AI 에이전트' 프로젝트입니다.
 
-Currently, two official plugins are available:
+방대한 학사 데이터와 LLM(대형 언어 모델)을 결합하여, 단순한 챗봇을 넘어 학생 개개인의 상황을 이해하고 능동적으로 작업을 수행하는 완성형 AI 비서를 구축하는 것을 목표로 합니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✨ Core Features (핵심 기능)
+🔍 통합 학사 정보 Q&A (RAG): 학교 홈페이지, 규정집, 공지사항, 학사 일정을 학습하여 자연어로 답변을 제공하며, 신뢰성 확보를 위해 정확한 정보의 출처(링크)를 함께 표시합니다.
 
-## React Compiler
+👤 개인화된 맞춤 답변: 사용자의 소속(학과, 트랙, 학년) 프로필을 반영합니다. "졸업 요건 알려줘"라는 동일한 질문에도, 질문자의 트랙에 딱 맞는 맞춤형 요건을 스마트하게 안내합니다.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+👁️ 멀티모달 문서 이해: 텍스트를 넘어, 시간표 이미지나 성적표 PDF 파일을 업로드하면 AI가 이를 OCR 및 비전 모델로 인식하여 텍스트로 변환하고 분석 결과를 제공합니다.
 
-Note: This will impact Vite dev & build performances.
+🛠️ 능동적 도구 활용 (Tools): 대화 중 "이거 내 메모장에 저장해줘" 또는 "캘린더에 이 일정 등록해줘"와 같이 요청하면, AI가 직접 외부 API와 DB를 호출하여 액션을 수행합니다.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🧠 연속적 대화 맥락 유지 (Memory): 과거 대화의 히스토리를 기억합니다. "아까 말한 장학금 신청하려면 서류 뭐 필요해?"와 같이 대명사나 지시어가 포함된 이어지는 질문도 문맥을 파악하여 매끄럽게 처리합니다.
