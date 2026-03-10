@@ -31,15 +31,6 @@
   --color-sidebar-bg: #FFFFFF52;
 }
 
-/* ──────────────────────────────────────────────
-   Tail outline loading animation
-   Usage:
-     position: relative; border-radius: <r>;
-     &::before { content:''; position:absolute; inset:-1px; border-radius:inherit;
-       background: conic-gradient(from var(--tail-angle), #B571FF, #B2FFF1, #B571FF);
-       animation: tail-outline-spin 2s linear infinite;
-       -webkit-mask: … (see below for full snippet) }
-────────────────────────────────────────────── */
 @property --tail-angle {
   syntax: "<angle>";
   initial-value: 0deg;
