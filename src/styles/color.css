@@ -1,0 +1,79 @@
+@theme {
+  /* Primary Blue */
+  --color-primary: #005FE2;
+  --color-body-blue: #004098;
+  --color-sub-blue: #E4EFFD;
+
+  /* Grayscale */
+  --color-body: #2A2A2A;
+  --color-sub: #636363;
+  --color-description: #AEAEAE;
+
+  /* Background */
+  --color-bg: #F5F7F8;
+  --color-bg-white: #FFFFFF;
+
+  /* Tail Question — Background (gradient: F6F9FF → CAE0FF 44%) */
+  --color-tail-bg-from: #F6F9FF;
+  --color-tail-bg-to: #CAE0FF70;
+
+  /* Tail Question — Outline: loading (gradient: B571FF → B2FFF1, animated) */
+  --color-tail-outline-loading-from: #B571FF;
+  --color-tail-outline-loading-to: #B2FFF1;
+
+  /* Tail Question — Outline: loaded (B8D6FF 44%) */
+  --color-tail-outline-loaded: #B8D6FF70;
+
+  /* Chat text */
+  --color-chat-text: #171717;
+
+  /* Sidebar Background (FFFFFF 32%, backdrop-blur) */
+  --color-sidebar-bg: #FFFFFF52;
+}
+
+/* ──────────────────────────────────────────────
+   Tail outline loading animation
+   Usage:
+     position: relative; border-radius: <r>;
+     &::before { content:''; position:absolute; inset:-1px; border-radius:inherit;
+       background: conic-gradient(from var(--tail-angle), #B571FF, #B2FFF1, #B571FF);
+       animation: tail-outline-spin 2s linear infinite;
+       -webkit-mask: … (see below for full snippet) }
+────────────────────────────────────────────── */
+@property --tail-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes tail-outline-spin {
+  to { --tail-angle: 360deg; }
+}
+
+.tail-outline-loading {
+  --tail-angle: 0deg;
+  position: relative;
+}
+
+.tail-outline-loading::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--tail-angle),
+    var(--color-tail-outline-loading-from),
+    var(--color-tail-outline-loading-to),
+    var(--color-tail-outline-loading-from)
+  );
+  animation: tail-outline-spin 2s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+  z-index: 0;
+  pointer-events: none;
+}
