@@ -72,7 +72,7 @@ const Sidebar = () => {
             onClick={() => setIsListVisible(!isListVisible)}
             rightElement={
               <IconButton
-                src={isListVisible ? MORE : LESS}
+                src={isListVisible ? LESS : MORE}
                 alt="toggle"
                 onClick={(e) => {
                   e.stopPropagation();
