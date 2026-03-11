@@ -3,8 +3,8 @@ import IconButton from "@components/IconButton";
 
 import LOGO from "@assets/images/logo.svg";
 import LANGUAGE from "@assets/icons/layouts/language-icon.svg";
-import MORE from "@assets/icons/layouts/more-icon.svg";
-import LESS from "@assets/icons/layouts/less-icon.svg";
+import MORE from "@assets/icons/layouts/more2-icon.svg";
+import LESS from "@assets/icons/layouts/less2-icon.svg";
 
 const Header = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -28,22 +28,18 @@ const Header = () => {
         >
           <IconButton
             src={LANGUAGE}
-            alt=""
-            size={20}
+            alt="언어"
             className="pointer-events-none"
           />
-          <span className="text-[13px] font-bold text-[#2C407A] uppercase">
-            Language
-          </span>
+          <span className="text-h5-m text-header-blue uppercase">Language</span>
           <IconButton
             src={isLangOpen ? LESS : MORE}
-            alt=""
-            size={14}
+            alt="언어"
             className="pointer-events-none"
           />
         </button>
 
-        <button type="button" className="text-[13px] font-bold text-[#2C407A]">
+        <button type="button" className="text-h5-m text-header-blue">
           로그인
         </button>
       </div>
