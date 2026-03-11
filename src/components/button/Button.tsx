@@ -1,10 +1,15 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export const Button = ({ children, disabled, className = '', ...props }: ButtonProps) => {
+export const Button = ({
+  children,
+  disabled,
+  className = "",
+  ...props
+}: ButtonProps) => {
   return (
     <button
       disabled={disabled}
