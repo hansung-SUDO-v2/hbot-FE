@@ -37,10 +37,10 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`h-screen flex flex-col justify-between py-9.5 shrink-0 transition-all duration-300 ease-in-out bg-transparent ${
+      className={`h-screen flex flex-col justify-between py-9.5 shrink-0 transition-all duration-300 ease-in-out  ${
         isExpanded
-          ? "w-69 px-4 items-start"
-          : "w-17.5 px-5.75 items-start bg-[#ffffff52]"
+          ? "w-69 px-4 items-start bg-[#ffffff52]"
+          : "w-17.5 px-5.75 items-start bg-transparent"
       }`}
     >
       {/* 상단 아이콘 4개 */}
@@ -83,12 +83,15 @@ const Sidebar = () => {
           />
           {/* 기록 목록 */}
           {isExpanded && isListVisible && (
-            <div className="flex flex-col gap-2 w-full px-2 animate-fadeIn max-h-95 overflow-y-auto [&::-webkit-scrollbar]:hidden">
+            <div
+              className="flex flex-col gap-2 w-full px-2 animate-fadeIn overflow-y-auto shrink-0 scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              style={{ maxHeight: "calc(100vh - 31rem)" }}
+            >
               {chatHistory.map((chat) => (
                 <button
                   key={chat.id}
                   type="button"
-                  className="w-full h-7.25 px-3.5 text-left text-[13px] text-gray-600 hover:text-gray-900 truncate shrink-0"
+                  className="w-full h-7.25 px-3.5 text-left text-h5-r text-list hover:text-list-blue truncate shrink-0 hover:bg-sub-blue rounded-[20px] active:scale-95 transition-colors cursor-pointer"
                 >
                   {chat.title}
                 </button>
@@ -110,9 +113,7 @@ const Sidebar = () => {
           <IconButton src={SETTING} alt="setting" size={26} />
           {isExpanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
-              <span className="text-[15px] font-medium text-gray-700 shrink-0">
-                설정
-              </span>
+              <span className="text-h5-r text-chat-text shrink-0">설정</span>
             </div>
           )}
         </div>
@@ -127,10 +128,8 @@ const Sidebar = () => {
           <IconButton src={PROFILE} alt="profile" />
           {isExpanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
-              <span className="text-sm font-bold text-gray-800 shrink-0">
-                홍길동
-              </span>
-              <span className="text-xs text-gray-500 truncate w-32">
+              <span className="text-h5-m text-sub shrink-0">홍길동</span>
+              <span className="text-r-12 text-chat-sub truncate w-32">
                 UXUI디자인 / 미디어디자인
               </span>
             </div>

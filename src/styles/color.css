@@ -4,15 +4,22 @@
   --color-body-blue: #004098;
   --color-sub-blue: #E4EFFD;
   --color-header-blue: #002E6e;
+  --color-list-blue: #4574B3;
 
   /* Grayscale */
   --color-body: #2A2A2A;
   --color-sub: #636363;
   --color-description: #AEAEAE;
+  --color-list: #939393;
 
   /* Background */
   --color-bg: #F5F7F8;
   --color-bg-white: #FFFFFF;
+
+  /* Sidebar Item */
+  --color-si-border: #C1D6F3;
+  --color-si-hover: #FFFFFF85;
+  --color-si-active: #4F85CF1A;
 
   /* Tail Question — Background (gradient: F6F9FF → CAE0FF 44%) */
   --color-tail-bg-from: #F6F9FF;
@@ -27,6 +34,7 @@
 
   /* Chat text */
   --color-chat-text: #171717;
+  --color-chat-sub: #17171780;
 
   /* Sidebar Background (FFFFFF 32%, backdrop-blur) */
   --color-sidebar-bg: #FFFFFF52;
