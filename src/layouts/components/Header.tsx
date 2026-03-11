@@ -23,7 +23,7 @@ const Header = () => {
       <div className="flex items-center gap-10.25">
         <button
           type="button"
-          className="flex items-center gap-1 outline-none group"
+          className="flex items-center gap-1 outline-none group cursor-pointer"
           onClick={() => setIsLangOpen(!isLangOpen)}
         >
           <IconButton
@@ -39,7 +39,10 @@ const Header = () => {
           />
         </button>
 
-        <button type="button" className="text-h5-m text-header-blue">
+        <button
+          type="button"
+          className="text-h5-m text-header-blue cursor-pointer"
+        >
           로그인
         </button>
       </div>
