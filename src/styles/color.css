@@ -29,6 +29,15 @@
 
   /* Sidebar Background (FFFFFF 32%, backdrop-blur) */
   --color-sidebar-bg: #FFFFFF52;
+
+  /* Suggested Question Colors */
+  --color-suggest-1: #002E6E;
+  --color-suggest-2: #9747FF;
+  --color-suggest-3: #918A3D;
+
+  /* Main Input Border Gradient */
+  --color-input-border-from: #005FE2;
+  --color-input-border-to: #E2E6A4;
 }
 
 @property --tail-angle {
