@@ -1,0 +1,75 @@
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+
+@layer components {
+  /* h1-B */
+  .text-h1-b {
+    font-family: Pretendard, sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.02375rem;
+  }
+
+  /* h4-b */
+  .text-h4-b {
+    font-family: Pretendard, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.02375rem;
+  }
+
+  /* r-28 */
+  .text-r-28 {
+    font-family: Pretendard, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02375rem;
+  }
+
+  /* h5-r */
+  .text-h5-r {
+    font-family: Pretendard, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02375rem;
+  }
+
+  /* r-12 */
+  .text-r-12 {
+    font-family: Pretendard, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.02375rem;
+  }
+
+  /* r-20 */
+  .text-r-20 {
+    font-family: Pretendard, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.02375rem;
+  }
+
+  /* m-20 */
+  .text-m-20 {
+    font-family: Pretendard, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.02375rem;
+  }
+
+  /* h5-m */
+  .text-h5-m {
+    font-family: Pretendard, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.02375rem;
+  }
+}

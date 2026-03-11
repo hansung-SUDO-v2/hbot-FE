@@ -1,1 +1,3 @@
+@import './styles/color.css';
 @import 'tailwindcss';
+@import './styles/fonts.css';
