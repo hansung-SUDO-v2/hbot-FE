@@ -39,6 +39,9 @@
   /* Main Input Border Gradient */
   --color-input-border-from: #005FE2;
   --color-input-border-to: #E2E6A4;
+
+  /* Shadow */
+  --shadow-input: 0px 2px 17.8px 0px var(--color-tail-outline-loaded);
 }
 
 @property --tail-angle {
