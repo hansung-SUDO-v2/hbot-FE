@@ -1,5 +1,5 @@
 import { useState } from "react";
-import IconButton from "@components/IconButton";
+import IconButton from "@/components/button/IconButton";
 
 import LOGO from "@assets/images/logo.svg";
 import SMALL_LOGO from "@assets/images/logo-small.svg";

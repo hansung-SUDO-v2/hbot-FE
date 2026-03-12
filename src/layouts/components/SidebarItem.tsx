@@ -1,4 +1,4 @@
-import IconButton from "@components/IconButton";
+import IconButton from "@/components/button/IconButton";
 
 interface SidebarItemProps {
   icon: string;

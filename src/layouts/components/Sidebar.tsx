@@ -1,5 +1,5 @@
 import { useState } from "react";
-import IconButton from "@components/IconButton";
+import IconButton from "@/components/button/IconButton";
 import SidebarItem from "./SidebarItem";
 
 import MENU_BASIC from "@assets/icons/layouts/menu-basic-icon.svg";

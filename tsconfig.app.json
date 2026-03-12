@@ -24,19 +24,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
+    /* Path Mapping */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@apis/*": ["src/apis/*"],
-      "@routes/*": ["src/routes/*"],
-      "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
-      "@types/*": ["src/types/*"],
-      "@assets/*": ["src/assets/*"],
-      "@store/*": ["src/store/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

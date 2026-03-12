@@ -3,6 +3,7 @@
   --color-primary: #005FE2;
   --color-body-blue: #004098;
   --color-sub-blue: #E4EFFD;
+  --color-primary-disabled: #005FE299;
   --color-header-blue: #002E6e;
   --color-list-blue: #4574B3;
 
@@ -47,6 +48,9 @@
   /* Main Input Border Gradient */
   --color-input-border-from: #005FE2;
   --color-input-border-to: #E2E6A4;
+
+  /* Shadow */
+  --shadow-input: 0px 2px 17.8px 0px var(--color-tail-outline-loaded);
 }
 
 @property --tail-angle {
