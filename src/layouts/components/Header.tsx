@@ -13,8 +13,8 @@ const Header = () => {
   return (
     <header className="w-full h-25.5 px-8 max-tablet:px-5 max-sm-tablet:pl-2 max-mobile:px-17.25 flex items-center justify-between shrink-0">
       {/* 로고: mobile 이하에서 small-logo로 교체 */}
-      <button
-        type="button"
+      <a
+        href="/"
         className="flex items-center outline-none hover:opacity-80 transition-opacity"
       >
         <img
@@ -27,7 +27,7 @@ const Header = () => {
           alt="로고"
           className="hidden max-mobile:block object-contain"
         />
-      </button>
+      </a>
 
       {/* 언어, 로그인 버튼: mobile 이하에서 숨김 */}
       <div className="flex items-center gap-10.25 max-tablet:gap-6 max-sm-tablet:gap-4 max-mobile:hidden">
@@ -51,12 +51,12 @@ const Header = () => {
           />
         </button>
 
-        <button
-          type="button"
+        <a
+          href="/login"
           className="text-h5-m max-tablet:text-sm max-sm-tablet:text-xs text-header-blue cursor-pointer"
         >
           로그인
-        </button>
+        </a>
       </div>
     </header>
   );
