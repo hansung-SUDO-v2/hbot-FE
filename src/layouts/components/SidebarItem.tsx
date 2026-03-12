@@ -5,7 +5,6 @@ interface SidebarItemProps {
   label: string;
   isExpanded: boolean;
   onClick?: () => void;
-  active?: boolean;
   rightElement?: React.ReactNode;
   className?: string;
 }
@@ -15,7 +14,6 @@ const SidebarItem = ({
   label,
   isExpanded,
   onClick,
-  active,
   rightElement,
   className = "",
 }: SidebarItemProps) => {
