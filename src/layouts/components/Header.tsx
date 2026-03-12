@@ -1,11 +1,11 @@
 import { useState } from "react";
 import IconButton from "@/components/button/IconButton";
 
-import LOGO from "@assets/images/logo.svg";
-import SMALL_LOGO from "@assets/images/logo-small.svg";
-import LANGUAGE from "@assets/icons/layouts/language-icon.svg";
-import MORE from "@assets/icons/layouts/more2-icon.svg";
-import LESS from "@assets/icons/layouts/less2-icon.svg";
+import LOGO from "@/assets/images/logo.svg";
+import SMALL_LOGO from "@/assets/images/logo-small.svg";
+import LANGUAGE from "@/assets/icons/layouts/language-icon.svg";
+import MORE from "@/assets/icons/layouts/more2-icon.svg";
+import LESS from "@/assets/icons/layouts/less2-icon.svg";
 
 const Header = () => {
   const [isLangOpen, setIsLangOpen] = useState<boolean>(false);

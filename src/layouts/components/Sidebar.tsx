@@ -2,15 +2,15 @@ import { useState } from "react";
 import IconButton from "@/components/button/IconButton";
 import SidebarItem from "./SidebarItem";
 
-import MENU_BASIC from "@assets/icons/layouts/menu-basic-icon.svg";
-import MENU_OPEN from "@assets/icons/layouts/menu-open-icon.svg";
-import ADD from "@assets/icons/layouts/add-icon.svg";
-import SEARCH from "@assets/icons/layouts/search-icon.svg";
-import HISTORY from "@assets/icons/layouts/history-icon.svg";
-import SETTING from "@assets/icons/layouts/settings-icon.svg";
-import PROFILE from "@assets/icons/layouts/profile-icon.svg";
-import MORE from "@assets/icons/layouts/more-icon.svg";
-import LESS from "@assets/icons/layouts/less-icon.svg";
+import MENU_BASIC from "@/assets/icons/layouts/menu-basic-icon.svg";
+import MENU_OPEN from "@/assets/icons/layouts/menu-open-icon.svg";
+import ADD from "@/assets/icons/layouts/add-icon.svg";
+import SEARCH from "@/assets/icons/layouts/search-icon.svg";
+import HISTORY from "@/assets/icons/layouts/history-icon.svg";
+import SETTING from "@/assets/icons/layouts/settings-icon.svg";
+import PROFILE from "@/assets/icons/layouts/profile-icon.svg";
+import MORE from "@/assets/icons/layouts/more-icon.svg";
+import LESS from "@/assets/icons/layouts/less-icon.svg";
 
 const chatHistory = [
   { id: "chat_001", title: "학점은행제 질문 리스트" },
