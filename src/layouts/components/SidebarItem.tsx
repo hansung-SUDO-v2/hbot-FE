@@ -7,6 +7,7 @@ interface SidebarItemProps {
   onClick?: () => void;
   active?: boolean;
   rightElement?: React.ReactNode;
+  className?: string;
 }
 
 const SidebarItem = ({
@@ -16,12 +17,13 @@ const SidebarItem = ({
   onClick,
   active,
   rightElement,
+  className = "",
 }: SidebarItemProps) => {
   return (
     <div
       className={`
         relative flex items-center w-full h-12.5 rounded-[9px] transition-all duration-200 justify-start
-        ${isExpanded ? "px-3.5" : "px-0"}
+        ${isExpanded ? "px-3.5" : "px-0"} ${className}
       `}
     >
       {onClick && (

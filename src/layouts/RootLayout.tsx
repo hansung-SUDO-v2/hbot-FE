@@ -2,9 +2,12 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import BG from "@assets/images/main-bg.webp";
 
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 const RootLayout = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+
   return (
     <div className="relative flex w-full h-screen overflow-hidden">
       {/* 배경 이미지 */}
@@ -18,10 +21,33 @@ const RootLayout = () => {
         }}
       ></div>
 
-      {/* 좌: 사이드바 */}
-      <Sidebar />
+      {/* tablet 초과: 일반 사이드바 */}
+      <div className="block max-tablet:hidden">
+        <Sidebar />
+      </div>
 
-      <div className="flex flex-col flex-1">
+      {/* tablet 이하: overlay 사이드바 */}
+      <div className="hidden max-tablet:block">
+        {isSidebarOpen && (
+          <button
+            type="button"
+            className="fixed inset-0 z-20 cursor-default"
+            aria-label="사이드바 닫기"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+        <div className="fixed left-0 top-0 z-30 h-screen">
+          <Sidebar
+            isMobileOverlay={true}
+            isSidebarOpen={isSidebarOpen}
+            onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+          />
+        </div>
+      </div>
+
+      <div className="hidden max-tablet:block max-mobile:hidden w-17.5 shrink-0" />
+
+      <div className="flex flex-col flex-1 min-w-0">
         {/* 상: 헤더 */}
         <Header />
 
