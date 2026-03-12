@@ -15,7 +15,7 @@ export const SendButton = ({ isDisabled, onClick }: SendButtonProps) => {
         rounded-[0.625rem] py-3.25 px-5 gap-2.5 text-h5-m text-bg-white
         ${
           isDisabled
-            ? "border border-primary bg-[#005FE299] cursor-not-allowed"
+            ? "border border-primary bg-primary-disabled cursor-not-allowed"
             : "border border-transparent bg-primary hover:bg-body-blue cursor-pointer"
         }
       `}
