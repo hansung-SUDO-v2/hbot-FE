@@ -45,9 +45,7 @@ const RootLayout = () => {
         </div>
       </div>
 
-      <div className="hidden max-tablet:block max-mobile:hidden w-17.5 shrink-0" />
-
-      <div className="flex flex-col flex-1 min-w-0">
+      <div className="flex flex-col flex-1 min-w-0 max-tablet:ml-17.5 max-mobile:ml-0">
         {/* 상: 헤더 */}
         <Header />
 
