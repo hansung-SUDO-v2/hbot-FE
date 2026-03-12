@@ -58,9 +58,17 @@ const Sidebar = ({
     <aside
       className={`h-screen flex flex-col justify-between py-9.5 shrink-0 transition-all duration-300 ease-in-out ${
         expanded
-          ? "w-69 max-mobile:w-[80%] px-4 items-start bg-sidebar-bg"
+          ? "w-69 max-mobile:w-[90vw] px-4 items-start"
           : "w-17.5 px-5.75 items-start bg-transparent"
       }`}
+      style={
+        expanded
+          ? {
+              boxShadow: "0.19rem -0.06rem 0.82rem 0 #002E6E0A",
+              backdropFilter: "blur(0.99rem)",
+            }
+          : undefined
+      }
     >
       {/* 상단 아이콘 4개 */}
       <div className="flex flex-col gap-14.5 w-full items-start">
