@@ -12,6 +12,24 @@ import PROFILE from "@assets/icons/layouts/profile-icon.svg";
 import MORE from "@assets/icons/layouts/more-icon.svg";
 import LESS from "@assets/icons/layouts/less-icon.svg";
 
+const chatHistory = [
+  { id: "chat_001", title: "학점은행제 질문 리스트" },
+  {
+    id: "chat_002",
+    title: "UXUI 디자인 트렌드 2026 매우매우매우매우매ㅜ 긴 제목",
+  },
+  { id: "chat_003", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_004", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_005", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_006", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_007", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_008", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_009", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_010", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_011", title: "리액트 사이드바 컴포넌트 구조" },
+  { id: "chat_012", title: "리액트 사이드바 컴포넌트 구조" },
+];
+
 interface SidebarProps {
   isMobileOverlay?: boolean;
   isSidebarOpen?: boolean;
@@ -32,24 +50,6 @@ const Sidebar = ({
     : () => setIsExpanded(!isExpanded);
 
   const isMobileOnly = isMobileOverlay;
-
-  const chatHistory = [
-    { id: "chat_001", title: "학점은행제 질문 리스트" },
-    {
-      id: "chat_002",
-      title: "UXUI 디자인 트렌드 2026 매우매우매우매우매ㅜ 긴 제목",
-    },
-    { id: "chat_003", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_004", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_005", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_006", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_007", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_008", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_009", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_010", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_011", title: "리액트 사이드바 컴포넌트 구조" },
-    { id: "chat_012", title: "리액트 사이드바 컴포넌트 구조" },
-  ];
 
   const handleSettingClick = () => {};
   const handleProfileClick = () => {};
