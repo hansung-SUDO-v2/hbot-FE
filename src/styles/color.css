@@ -51,6 +51,7 @@
 
   /* Shadow */
   --shadow-input: 0px 2px 17.8px 0px var(--color-tail-outline-loaded);
+  --shadow-suggest: 0px 0px 4px 0px #0000001A;
 }
 
 @property --tail-angle {
