@@ -1,10 +1,10 @@
 import type React from "react";
-import IcCopy from "@/assets/icons/content-copy-icon.svg?react";
-import IcReplay from "@/assets/icons/replay-icon.svg?react";
-import IcShare from "@/assets/icons/share-icon.svg?react";
-import IcThumbDown from "@/assets/icons/thumb-down-icon.svg?react";
-import IcThumbUp from "@/assets/icons/thumb-up-icon.svg?react";
-import IcVolume from "@/assets/icons/volume-up-icon.svg?react";
+import IcCopy from "@/assets/icons/chat/content-copy-icon.svg?react";
+import IcReplay from "@/assets/icons/chat/replay-icon.svg?react";
+import IcShare from "@/assets/icons/chat/share-icon.svg?react";
+import IcThumbDown from "@/assets/icons/chat/thumb-down-icon.svg?react";
+import IcThumbUp from "@/assets/icons/chat/thumb-up-icon.svg?react";
+import IcVolume from "@/assets/icons/chat/volume-up-icon.svg?react";
 import IconButton from "@/components/button/IconButton";
 
 interface ResponseToolbarProps {

@@ -1,4 +1,4 @@
-import IcEast from "@/assets/icons/east-icon.svg?react";
+import IcEast from "@/assets/icons/chat/east-icon.svg?react";
 
 interface TailQuestionProps {
   text: string;
