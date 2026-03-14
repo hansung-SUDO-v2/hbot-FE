@@ -1,8 +1,8 @@
-import SchoolIcon from "@/assets/icons/main/school-icon.svg";
-import MailIcon from "@/assets/icons/main/mail-icon.svg";
-import MemoIcon from "@/assets/icons/main/memo-icon.svg";
-import CallIcon from "@/assets/icons/main/call-icon.svg";
-import ShareIcon from "@/assets/icons/main/share-icon.svg";
+import IcSchool from "@/assets/icons/main/school-icon.svg";
+import IcMail from "@/assets/icons/main/mail-icon.svg";
+import IcMemo from "@/assets/icons/main/memo-icon.svg";
+import IcCall from "@/assets/icons/main/call-icon.svg";
+import IcShare from "@/assets/icons/main/share-icon.svg";
 
 export type ActionButtonVariant = "school" | "mail" | "memo" | "call" | "share";
 
@@ -13,11 +13,11 @@ interface ActionButtonProps {
 }
 
 const iconMap: Record<ActionButtonVariant, string> = {
-  school: SchoolIcon,
-  mail: MailIcon,
-  memo: MemoIcon,
-  call: CallIcon,
-  share: ShareIcon,
+  school: IcSchool,
+  mail: IcMail,
+  memo: IcMemo,
+  call: IcCall,
+  share: IcShare,
 };
 
 const ActionButton = ({ variant, label, onClick }: ActionButtonProps) => {

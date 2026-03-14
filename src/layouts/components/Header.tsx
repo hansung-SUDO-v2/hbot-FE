@@ -1,11 +1,11 @@
 import { useState } from "react";
 import IconButton from "@/components/button/IconButton";
 
-import LOGO from "@/assets/images/logo.svg";
-import SMALL_LOGO from "@/assets/images/logo-small.svg";
-import LANGUAGE from "@/assets/icons/layouts/language-icon.svg";
-import MORE from "@/assets/icons/layouts/more2-icon.svg";
-import LESS from "@/assets/icons/layouts/less2-icon.svg";
+import IcLogo from "@/assets/images/logo.svg";
+import IcSmallLogo from "@/assets/images/logo-small.svg";
+import IcLanguage from "@/assets/icons/layouts/language-icon.svg";
+import IcMore from "@/assets/icons/layouts/more2-icon.svg";
+import IcLess from "@/assets/icons/layouts/less2-icon.svg";
 
 const Header = () => {
   const [isLangOpen, setIsLangOpen] = useState<boolean>(false);
@@ -18,12 +18,12 @@ const Header = () => {
         className="flex items-center outline-none hover:opacity-80 transition-opacity"
       >
         <img
-          src={LOGO}
+          src={IcLogo}
           alt="로고"
           className="w-51.25 max-tablet:w-40 max-sm-tablet:w-33 object-contain max-mobile:hidden"
         />
         <img
-          src={SMALL_LOGO}
+          src={IcSmallLogo}
           alt="로고"
           className="hidden max-mobile:block object-contain"
         />
@@ -37,7 +37,7 @@ const Header = () => {
           onClick={() => setIsLangOpen(!isLangOpen)}
         >
           <IconButton
-            src={LANGUAGE}
+            src={IcLanguage}
             alt="언어"
             className="pointer-events-none max-tablet:w-5 max-tablet:h-5 max-sm-tablet:w-4 max-sm-tablet:h-4"
           />
@@ -45,7 +45,7 @@ const Header = () => {
             Language
           </span>
           <IconButton
-            src={isLangOpen ? LESS : MORE}
+            src={isLangOpen ? IcLess : IcMore}
             alt="언어"
             className="pointer-events-none max-tablet:w-5 max-tablet:h-5 max-sm-tablet:w-4 max-sm-tablet:h-4"
           />

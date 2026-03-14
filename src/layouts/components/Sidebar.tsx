@@ -2,15 +2,15 @@ import { useState } from "react";
 import IconButton from "@/components/button/IconButton";
 import SidebarItem from "./SidebarItem";
 
-import MENU_BASIC from "@/assets/icons/layouts/menu-basic-icon.svg";
-import MENU_OPEN from "@/assets/icons/layouts/menu-open-icon.svg";
-import ADD from "@/assets/icons/layouts/add-icon.svg";
-import SEARCH from "@/assets/icons/layouts/search-icon.svg";
-import HISTORY from "@/assets/icons/layouts/history-icon.svg";
-import SETTING from "@/assets/icons/layouts/settings-icon.svg";
-import PROFILE from "@/assets/icons/layouts/profile-icon.svg";
-import MORE from "@/assets/icons/layouts/more-icon.svg";
-import LESS from "@/assets/icons/layouts/less-icon.svg";
+import IcMenuBasic from "@/assets/icons/layouts/menu-basic-icon.svg";
+import IcMenuOpen from "@/assets/icons/layouts/menu-open-icon.svg";
+import IcAdd from "@/assets/icons/layouts/add-icon.svg";
+import IcSearch from "@/assets/icons/layouts/search-icon.svg";
+import IcHistory from "@/assets/icons/layouts/history-icon.svg";
+import IcSetting from "@/assets/icons/layouts/settings-icon.svg";
+import IcProfile from "@/assets/icons/layouts/profile-icon.svg";
+import IcMore from "@/assets/icons/layouts/more-icon.svg";
+import IcLess from "@/assets/icons/layouts/less-icon.svg";
 
 const chatHistory = [
   { id: "chat_001", title: "학점은행제 질문 리스트" },
@@ -74,7 +74,7 @@ const Sidebar = ({
       <div className="flex flex-col gap-14.5 w-full items-start">
         {/* 메뉴 버튼 */}
         <IconButton
-          src={expanded ? MENU_OPEN : MENU_BASIC}
+          src={expanded ? IcMenuOpen : IcMenuBasic}
           alt="menu"
           onClick={handleToggle}
         />
@@ -86,25 +86,25 @@ const Sidebar = ({
           }`}
         >
           <SidebarItem
-            icon={ADD}
+            icon={IcAdd}
             label="새 채팅"
             isExpanded={expanded}
             onClick={() => {}}
           />
           <SidebarItem
-            icon={SEARCH}
+            icon={IcSearch}
             label="검색"
             isExpanded={expanded}
             onClick={() => {}}
           />
           <SidebarItem
-            icon={HISTORY}
+            icon={IcHistory}
             label="기록"
             isExpanded={expanded}
             onClick={() => setIsListVisible(!isListVisible)}
             rightElement={
               <IconButton
-                src={isListVisible ? LESS : MORE}
+                src={isListVisible ? IcLess : IcMore}
                 alt="toggle"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -145,7 +145,7 @@ const Sidebar = ({
           }`}
           onClick={handleSettingClick}
         >
-          <IconButton src={SETTING} alt="setting" size={26} />
+          <IconButton src={IcSetting} alt="setting" size={26} />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-r text-chat-text shrink-0">설정</span>
@@ -160,7 +160,7 @@ const Sidebar = ({
           }`}
           onClick={handleProfileClick}
         >
-          <IconButton src={PROFILE} alt="profile" />
+          <IconButton src={IcProfile} alt="profile" />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-m text-sub shrink-0">홍길동</span>

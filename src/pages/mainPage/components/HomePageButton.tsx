@@ -1,4 +1,4 @@
-import HomePageButtonImg from "@/assets/images/homepage-btn.svg";
+import ImgHomePageBtn from "@/assets/images/homepage-btn.svg";
 
 const HomePageButton = () => {
   return (
@@ -10,7 +10,7 @@ const HomePageButton = () => {
         학교 홈페이지 바로가기!
       </span>
       <img
-        src={HomePageButtonImg}
+        src={ImgHomePageBtn}
         alt="학교 홈페이지 바로가기"
         className="w-full h-full"
       />
