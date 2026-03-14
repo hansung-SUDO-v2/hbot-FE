@@ -3,7 +3,22 @@
   --breakpoint-desktop: 1366px;    /* 1366 이하 */
   --breakpoint-laptop: 1024px;     /* 1024 이하 */
   --breakpoint-tablet: 720px;      /* 720 이하 */
-  --breakpoint-mobile: 460px;      /* 393 이하 (모바일) */
+  --breakpoint-mobile: 460px;      /* 460 이하 (모바일) */
 
   --breakpoint-sm-tablet: 550px; /* 로고-언어 붙는 구간 대응 */
+}
+
+
+@utility chat-pl {
+  padding-left: max(2.5rem, calc(50% - 23.5rem));
+}
+@utility chat-pr {
+  padding-right: max(2.5rem, calc(50% - 23.5rem));
+}
+
+@utility main-chat-pl {
+  padding-left: max(2.5rem, calc(50% - 29.34rem));
+}
+@utility main-chat-pr {
+  padding-right: max(2.5rem, calc(50% - 29.34rem));
 }
