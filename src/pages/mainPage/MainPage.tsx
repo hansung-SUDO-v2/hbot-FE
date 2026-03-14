@@ -18,7 +18,7 @@ const MainPage = () => {
         <p className="text-h4-b text-header-blue">HANSUNG AI ASSISTANT</p>
         <p className="text-h1-b text-body">한성대 AI 워크스페이스</p>
       </section>
-      <p className="text-r-28 text-body mt-7.75 mb-5.75">
+      <p className="text-r-28 text-body mt-7.75 mb-5.75 animate-dissolve">
         안녕하세요, 무엇을 도와드릴까요?
       </p>
 
