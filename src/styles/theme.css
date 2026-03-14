@@ -7,3 +7,11 @@
 
   --breakpoint-sm-tablet: 550px; /* 로고-언어 붙는 구간 대응 */
 }
+
+@utility chat-pl {
+  padding-left: max(2.5rem, calc(50% - 23.5rem));
+}
+
+@utility chat-pr {
+  padding-right: max(2.5rem, calc(50% - 23.5rem));
+}
