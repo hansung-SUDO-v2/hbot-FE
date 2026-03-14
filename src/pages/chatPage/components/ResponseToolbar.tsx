@@ -1,3 +1,4 @@
+import type React from "react";
 import IcCopy from "@/assets/icons/content-copy-icon.svg?react";
 import IcReplay from "@/assets/icons/replay-icon.svg?react";
 import IcShare from "@/assets/icons/share-icon.svg?react";
@@ -10,15 +11,21 @@ interface ResponseToolbarProps {
   className?: string;
 }
 
+const TOOLBAR_BUTTONS: { icon: React.FC<React.SVGProps<SVGSVGElement>>; alt: string }[] = [
+  { icon: IcCopy, alt: "복사" },
+  { icon: IcThumbUp, alt: "좋아요" },
+  { icon: IcThumbDown, alt: "싫어요" },
+  { icon: IcVolume, alt: "음성" },
+  { icon: IcReplay, alt: "다시 생성" },
+  { icon: IcShare, alt: "공유" },
+];
+
 const ResponseToolbar = ({ className = "" }: ResponseToolbarProps) => {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <IconButton icon={IcCopy} alt="복사" size={20} />
-      <IconButton icon={IcThumbUp} alt="좋아요" size={20} />
-      <IconButton icon={IcThumbDown} alt="싫어요" size={20} />
-      <IconButton icon={IcVolume} alt="음성" size={20} />
-      <IconButton icon={IcReplay} alt="다시 생성" size={20} />
-      <IconButton icon={IcShare} alt="공유" size={20} />
+      {TOOLBAR_BUTTONS.map(({ icon, alt }) => (
+        <IconButton key={alt} icon={icon} alt={alt} size={20} />
+      ))}
     </div>
   );
 };
