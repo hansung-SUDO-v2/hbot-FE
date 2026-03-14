@@ -8,14 +8,17 @@ import UserMessage from "./components/UserMessage";
 const ChatPage = () => {
   const [messages, setMessages] = useState<ChatMessage[]>(mockChatMessages);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const idCounterRef = useRef(0);
+
+  const nextId = () => ++idCounterRef.current;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSubmit = (text: string) => {
-    const userMessageId = Date.now();
-    const aiMessageId = Date.now() + 1;
+    const userMessageId = nextId();
+    const aiMessageId = nextId();
 
     const loadingAIMessage: AIMessage = {
       id: aiMessageId,
@@ -62,6 +65,7 @@ const ChatPage = () => {
                 isLoading={msg.isLoading}
                 tailQuestions={msg.tailQuestions}
                 tailLoading={msg.tailLoading}
+                onTailQuestionClick={handleSubmit}
               />
             ) : (
               <UserMessage key={msg.id} content={msg.content} />
