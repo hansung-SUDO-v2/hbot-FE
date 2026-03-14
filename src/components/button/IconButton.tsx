@@ -1,12 +1,17 @@
-interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  src: string;
+import type React from "react";
+
+type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   alt: string;
   size?: number;
   className?: string;
-}
+} & (
+    | { icon: React.FC<React.SVGProps<SVGSVGElement>>; src?: never }
+    | { src: string; icon?: never }
+  );
 
 const IconButton = ({
   src,
+  icon: Icon,
   alt,
   size = 24,
   className = "",
@@ -23,12 +28,16 @@ const IconButton = ({
       aria-label={alt}
       {...props}
     >
-      <img
-        src={src}
-        alt={alt}
-        style={{ width: size, height: size }}
-        className="object-contain"
-      />
+      {Icon ? (
+        <Icon width={size} height={size} />
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          style={{ width: size, height: size }}
+          className="object-contain"
+        />
+      )}
     </button>
   );
 };

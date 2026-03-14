@@ -2,7 +2,11 @@ import type React from "react";
 import { useRef, useState } from "react";
 import { ChatToolbox } from "./ChatToolBox";
 
-export const ChatInput = () => {
+interface ChatInputProps {
+  onSubmit?: (text: string) => void;
+}
+
+export const ChatInput = ({ onSubmit }: ChatInputProps) => {
   const [text, setText] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -22,6 +26,7 @@ export const ChatInput = () => {
 
   const handleSubmit = () => {
     if (isDisabled) return;
+    onSubmit?.(text.trim());
     setText("");
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
