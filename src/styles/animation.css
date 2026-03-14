@@ -1,8 +1,9 @@
 @keyframes dissolve {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 @theme {
-  --animate-dissolve: dissolve 900ms cubic-bezier(0.4, 0, 0.2, 1) 800ms both;
+    /* Dissolve: 800ms 딜레이 후 서서히 나타남 */
+    --animate-dissolve: dissolve 900ms cubic-bezier(0.4, 0, 0.2, 1) 800ms both;
 }
