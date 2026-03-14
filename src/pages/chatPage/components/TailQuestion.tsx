@@ -3,16 +3,20 @@ import IcEast from "@/assets/icons/east-icon.svg?react";
 interface TailQuestionProps {
   text: string;
   isLoading?: boolean;
+  onClick?: () => void;
 }
 
-const TailQuestion = ({ text, isLoading = false }: TailQuestionProps) => {
+const TailQuestion = ({ text, isLoading = false, onClick }: TailQuestionProps) => {
   return (
-    <div
+    <button
+      type="button"
+      onClick={!isLoading ? onClick : undefined}
+      disabled={isLoading}
       className={`
-        flex items-center justify-between
+        w-full text-left flex items-center justify-between
         px-8 py-4.5 rounded-full
         bg-linear-to-r from-tail-bg-from to-tail-bg-to
-        ${isLoading ? "tail-outline-loading" : "border border-tail-outline-loaded"}
+        ${isLoading ? "tail-outline-loading" : "border border-tail-outline-loaded cursor-pointer"}
       `}
     >
       {isLoading ? (
@@ -25,7 +29,7 @@ const TailQuestion = ({ text, isLoading = false }: TailQuestionProps) => {
         <span className="text-h5-r text-primary mr-4">{text}</span>
       )}
       <IcEast className="w-6 h-6 shrink-0" />
-    </div>
+    </button>
   );
 };
 

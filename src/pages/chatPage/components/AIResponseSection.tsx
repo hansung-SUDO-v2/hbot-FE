@@ -8,6 +8,7 @@ interface AIResponseSectionProps {
   isLoading?: boolean;
   tailQuestions: TailQuestionType[];
   tailLoading?: boolean;
+  onTailQuestionClick?: (text: string) => void;
 }
 
 const AIResponseSection = ({
@@ -15,6 +16,7 @@ const AIResponseSection = ({
   isLoading = false,
   tailQuestions,
   tailLoading = false,
+  onTailQuestionClick,
 }: AIResponseSectionProps) => {
   return (
     <div className="flex flex-col gap-4">
@@ -29,7 +31,12 @@ const AIResponseSection = ({
       </div>
       <div className="flex flex-col gap-4">
         {tailQuestions.map((q) => (
-          <TailQuestion key={q.id} text={q.text} isLoading={tailLoading} />
+          <TailQuestion
+            key={q.id}
+            text={q.text}
+            isLoading={tailLoading}
+            onClick={() => onTailQuestionClick?.(q.text)}
+          />
         ))}
       </div>
     </div>
