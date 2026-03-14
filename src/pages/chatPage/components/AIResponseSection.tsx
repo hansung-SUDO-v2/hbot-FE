@@ -1,0 +1,39 @@
+import IcBoogie from "@/assets/icons/boogie-icon.svg?react";
+import type { TailQuestion as TailQuestionType } from "@/types/chat";
+import ResponseToolbar from "./ResponseToolbar";
+import TailQuestion from "./TailQuestion";
+
+interface AIResponseSectionProps {
+  content: string;
+  isLoading?: boolean;
+  tailQuestions: TailQuestionType[];
+  tailLoading?: boolean;
+}
+
+const AIResponseSection = ({
+  content,
+  isLoading = false,
+  tailQuestions,
+  tailLoading = false,
+}: AIResponseSectionProps) => {
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-4 items-start">
+        <IcBoogie className="w-12 h-12 shrink-0" />
+        <div className="flex-1">
+          <p className="text-r-20 text-header-blue whitespace-pre-line">
+            {isLoading ? "답변 생성중..." : content}
+          </p>
+          <ResponseToolbar className="mt-6" />
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        {tailQuestions.map((q) => (
+          <TailQuestion key={q.id} text={q.text} isLoading={tailLoading} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default AIResponseSection;
