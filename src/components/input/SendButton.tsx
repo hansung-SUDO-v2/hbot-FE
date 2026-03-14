@@ -1,4 +1,4 @@
-import IcArrow from "@/assets/icons/ic_arrow.triangle.turn.up.right.circle.fill.svg";
+import IcArrow from "@/assets/icons/chat/arrow-triangle-turn-up-right-circle-fill-icon.svg";
 import { Button } from "../button/Button";
 
 interface SendButtonProps {
