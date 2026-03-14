@@ -52,7 +52,7 @@ const Header = () => {
         </button>
 
         <a
-          href="/login"
+          href="/"
           className="text-h5-m max-tablet:text-sm max-sm-tablet:text-xs text-header-blue cursor-pointer"
         >
           로그인
