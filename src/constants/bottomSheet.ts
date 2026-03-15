@@ -26,7 +26,13 @@ export const FUNCTION_ITEMS = [
   { icon: IcShare, label: "공유하기" },
 ] as const;
 
-export const MOCK_GALLERY_IMAGES = [image1, image2, image1, image2, image1];
+export const MOCK_GALLERY_IMAGES = [
+  { id: "gallery-1", src: image1 },
+  { id: "gallery-2", src: image2 },
+  { id: "gallery-3", src: image1 },
+  { id: "gallery-4", src: image2 },
+  { id: "gallery-5", src: image1 },
+] as const;
 
 export const MENU_SECTIONS = [
   { label: "contents", items: CONTENTS_ITEMS, className: "mt-[1.63rem]" },

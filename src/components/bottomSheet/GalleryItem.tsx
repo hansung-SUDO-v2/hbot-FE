@@ -5,13 +5,13 @@ interface GalleryItemProps {
   src: string;
   index: number;
   selected: boolean;
-  onToggle: (index: number) => void;
+  onToggle: () => void;
 }
 
 const GalleryItem = ({ src, index, selected, onToggle }: GalleryItemProps) => (
   <button
     type="button"
-    onClick={() => onToggle(index)}
+    onClick={onToggle}
     className="relative w-24 h-24 rounded-xl shrink-0 overflow-hidden"
   >
     <img
