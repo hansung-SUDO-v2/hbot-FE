@@ -29,7 +29,11 @@ const SidebarItem = ({
         <button
           type="button"
           onClick={onClick}
-          className="absolute inset-0 w-full h-full rounded-[9px] cursor-pointer outline-none border-none bg-transparent hover:bg-si-hover hover:ring-1 hover:ring-si-border focus-visible:ring-1 focus-visible:ring-si-border active:bg-si-active active:scale-95 transition-all"
+          className={`absolute inset-0 w-full h-full rounded-[9px] cursor-pointer outline-none border-none bg-transparent transition-all ${
+            isExpanded
+              ? "hover:bg-si-hover hover:ring-1 hover:ring-si-border focus-visible:ring-1 focus-visible:ring-si-border active:bg-si-active active:scale-95"
+              : ""
+          }`}
           aria-label={label}
         />
       )}

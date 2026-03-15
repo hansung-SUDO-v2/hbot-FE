@@ -51,6 +51,18 @@ const Sidebar = ({
 
   const isMobileOnly = isMobileOverlay;
 
+  // 기록 버튼 핸들러
+  const handleHistoryClick = () => {
+    if (!expanded) {
+      // 닫힘: 사이드바를 열고, 리스트도 무조건 보이게
+      if (handleToggle) handleToggle();
+      setIsListVisible(true);
+    } else {
+      // 열림: 사이드바는 그대로 두고 리스트만 토글
+      setIsListVisible(!isListVisible);
+    }
+  };
+
   const handleSettingClick = () => {};
   const handleProfileClick = () => {};
 
@@ -101,7 +113,7 @@ const Sidebar = ({
             icon={IcHistory}
             label="기록"
             isExpanded={expanded}
-            onClick={() => setIsListVisible(!isListVisible)}
+            onClick={handleHistoryClick}
             rightElement={
               <IconButton
                 icon={isListVisible ? IcLess : IcMore}
