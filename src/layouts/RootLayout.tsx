@@ -1,5 +1,5 @@
-import { useState } from "react";
 import clsx from "clsx";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import BG from "@/assets/images/main-bg.webp";
 import Header from "./components/Header";
@@ -36,7 +36,12 @@ const RootLayout = () => {
             onClick={() => setIsSidebarOpen(false)}
           />
         )}
-        <div className={clsx("fixed left-0 top-0 h-screen", isSidebarOpen ? "z-38" : "z-25")}>
+        <div
+          className={clsx(
+            "fixed left-0 top-0 h-screen",
+            isSidebarOpen ? "z-38" : "z-25"
+          )}
+        >
           <Sidebar
             isMobileOverlay={true}
             isSidebarOpen={isSidebarOpen}

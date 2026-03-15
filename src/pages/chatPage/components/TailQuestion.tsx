@@ -7,7 +7,11 @@ interface TailQuestionProps {
   onClick?: () => void;
 }
 
-const TailQuestion = ({ text, isLoading = false, onClick }: TailQuestionProps) => {
+const TailQuestion = ({
+  text,
+  isLoading = false,
+  onClick,
+}: TailQuestionProps) => {
   return (
     <button
       type="button"
@@ -17,7 +21,7 @@ const TailQuestion = ({ text, isLoading = false, onClick }: TailQuestionProps) =
         "w-full text-left flex items-center justify-between px-8 py-4.5 rounded-full bg-linear-to-r from-tail-bg-from to-tail-bg-to",
         isLoading
           ? "tail-outline-loading"
-          : "border border-tail-outline-loaded cursor-pointer",
+          : "border border-tail-outline-loaded cursor-pointer"
       )}
     >
       {isLoading ? (
@@ -27,7 +31,9 @@ const TailQuestion = ({ text, isLoading = false, onClick }: TailQuestionProps) =
           <span className="w-1 h-1 rounded-full bg-primary animate-bounce" />
         </div>
       ) : (
-        <span className="text-h5-r max-mobile:text-mb-r text-primary mr-4">{text}</span>
+        <span className="text-h5-r max-mobile:text-mb-r text-primary mr-4">
+          {text}
+        </span>
       )}
       <IcEast className="w-6 h-6 shrink-0" />
     </button>

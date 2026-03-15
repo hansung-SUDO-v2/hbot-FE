@@ -6,7 +6,10 @@ interface UseChatInputParams {
   isLoading?: boolean;
 }
 
-export const useChatInput = ({ onSubmit, isLoading = false }: UseChatInputParams) => {
+export const useChatInput = ({
+  onSubmit,
+  isLoading = false,
+}: UseChatInputParams) => {
   const [text, setText] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -40,5 +43,12 @@ export const useChatInput = ({ onSubmit, isLoading = false }: UseChatInputParams
     }
   };
 
-  return { text, textareaRef, isDisabled, handleChange, handleSubmit, handleKeyDown } as const;
+  return {
+    text,
+    textareaRef,
+    isDisabled,
+    handleChange,
+    handleSubmit,
+    handleKeyDown,
+  } as const;
 };

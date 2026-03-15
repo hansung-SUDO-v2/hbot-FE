@@ -79,10 +79,11 @@ const ChatPage = () => {
       <div className="shrink-0 relative chat-pl chat-pr pb-7">
         <div className="absolute left-0 right-0 top-0 h-12 -translate-y-full bg-linear-to-b from-transparent to-bg pointer-events-none" />
         <div className="ml-16 max-mobile:ml-0">
-          <ChatInput 
+          <ChatInput
             onSubmit={handleSubmit}
-            isLoading={messages.some( //api 연동 시 isLoading 연결
-              (msg) => "isLoading" in msg && msg.isLoading,
+            isLoading={messages.some(
+              //api 연동 시 isLoading 연결
+              (msg) => "isLoading" in msg && msg.isLoading
             )}
           />
         </div>

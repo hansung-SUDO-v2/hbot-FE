@@ -14,9 +14,16 @@ const GalleryItem = ({ src, index, selected, onToggle }: GalleryItemProps) => (
     onClick={() => onToggle(index)}
     className="relative w-24 h-24 rounded-xl shrink-0 overflow-hidden"
   >
-    <img src={src} alt={`갤러리 ${index + 1}`} className="w-full h-full object-cover" />
+    <img
+      src={src}
+      alt={`갤러리 ${index + 1}`}
+      className="w-full h-full object-cover"
+    />
     <IcSelect
-      className={clsx("absolute top-2 right-2 w-6 h-6", selected && "[&_circle]:fill-white")}
+      className={clsx(
+        "absolute top-2 right-2 w-6 h-6",
+        selected && "[&_circle]:fill-white"
+      )}
     />
   </button>
 );

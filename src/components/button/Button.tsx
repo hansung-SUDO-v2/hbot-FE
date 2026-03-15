@@ -1,5 +1,5 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -14,7 +14,10 @@ export const Button = ({
   return (
     <button
       disabled={disabled}
-      className={clsx("flex items-center justify-center transition-all duration-200", className)}
+      className={clsx(
+        "flex items-center justify-center transition-all duration-200",
+        className
+      )}
       {...props}
     >
       {children}

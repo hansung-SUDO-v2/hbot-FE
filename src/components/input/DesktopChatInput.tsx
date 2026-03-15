@@ -6,9 +6,18 @@ interface DesktopChatInputProps {
   isLoading?: boolean;
 }
 
-export const DesktopChatInput = ({ onSubmit, isLoading }: DesktopChatInputProps) => {
-  const { text, textareaRef, isDisabled, handleChange, handleSubmit, handleKeyDown } =
-    useChatInput({ onSubmit, isLoading });
+export const DesktopChatInput = ({
+  onSubmit,
+  isLoading,
+}: DesktopChatInputProps) => {
+  const {
+    text,
+    textareaRef,
+    isDisabled,
+    handleChange,
+    handleSubmit,
+    handleKeyDown,
+  } = useChatInput({ onSubmit, isLoading });
 
   return (
     <div className="w-full rounded-[1.25rem] p-px bg-linear-to-r from-input-border-from to-input-border-to shadow-input">

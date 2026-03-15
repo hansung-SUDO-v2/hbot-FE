@@ -1,5 +1,5 @@
-import { useState } from "react";
 import clsx from "clsx";
+import { useState } from "react";
 import IcAdd from "@/assets/icons/chat/add-icon.svg?react";
 import IcArrow from "@/assets/icons/chat/arrow-triangle-turn-up-right-circle-fill-icon.svg";
 import { ChatBottomSheet } from "@/components/bottomSheet/ChatBottomSheet";
@@ -10,10 +10,19 @@ interface MobileChatInputProps {
   isLoading?: boolean;
 }
 
-export const MobileChatInput = ({ onSubmit, isLoading }: MobileChatInputProps) => {
+export const MobileChatInput = ({
+  onSubmit,
+  isLoading,
+}: MobileChatInputProps) => {
   const [bottomSheetOpen, setBottomSheetOpen] = useState(false);
-  const { text, textareaRef, isDisabled, handleChange, handleSubmit, handleKeyDown } =
-    useChatInput({ onSubmit, isLoading });
+  const {
+    text,
+    textareaRef,
+    isDisabled,
+    handleChange,
+    handleSubmit,
+    handleKeyDown,
+  } = useChatInput({ onSubmit, isLoading });
 
   return (
     <div className="flex items-center gap-1.25">
@@ -25,7 +34,10 @@ export const MobileChatInput = ({ onSubmit, isLoading }: MobileChatInputProps) =
         <IcAdd className="w-6 h-6 [&_path]:fill-mobile-add-icon" />
       </button>
 
-      <ChatBottomSheet open={bottomSheetOpen} onOpenChange={setBottomSheetOpen} />
+      <ChatBottomSheet
+        open={bottomSheetOpen}
+        onOpenChange={setBottomSheetOpen}
+      />
 
       <div className="w-full rounded-[1.875rem] p-px bg-linear-to-r from-input-border-from to-input-border-to shadow-mobile-input">
         <div className="flex flex-row items-center bg-bg-white rounded-[calc(1.875rem-1px)] py-2 pl-4 pr-[0.35rem]">
@@ -47,7 +59,7 @@ export const MobileChatInput = ({ onSubmit, isLoading }: MobileChatInputProps) =
               "flex items-center justify-center py-[0.53rem] px-[0.59rem] rounded-full shrink-0 transition-all duration-200",
               isDisabled
                 ? "bg-primary-disabled cursor-not-allowed opacity-70"
-                : "bg-mobile-send cursor-pointer hover:opacity-80",
+                : "bg-mobile-send cursor-pointer hover:opacity-80"
             )}
           >
             <img src={IcArrow} alt="전송" className="w-5 h-5" />

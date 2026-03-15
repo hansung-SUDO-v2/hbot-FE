@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { TOOLBAR_BUTTONS } from "@/constants/chat";
 import IconButton from "@/components/button/IconButton";
+import { TOOLBAR_BUTTONS } from "@/constants/chat";
 
 interface ResponseToolbarProps {
   className?: string;

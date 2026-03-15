@@ -1,5 +1,5 @@
-import type React from "react";
 import clsx from "clsx";
+import type React from "react";
 
 type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   alt: string;
@@ -23,7 +23,7 @@ const IconButton = ({
       type="button"
       className={clsx(
         "flex items-center justify-center cursor-pointer active:scale-[0.94] transition-transform duration-75 ease-out shrink-0",
-        className,
+        className
       )}
       aria-label={alt}
       {...props}

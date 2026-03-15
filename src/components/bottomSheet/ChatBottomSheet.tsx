@@ -15,7 +15,10 @@ interface ChatBottomSheetProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export const ChatBottomSheet = ({ open, onOpenChange }: ChatBottomSheetProps) => {
+export const ChatBottomSheet = ({
+  open,
+  onOpenChange,
+}: ChatBottomSheetProps) => {
   const [selectedImages, setSelectedImages] = useState<Set<number>>(new Set());
 
   const toggleSelect = (index: number) => {
@@ -43,7 +46,11 @@ export const ChatBottomSheet = ({ open, onOpenChange }: ChatBottomSheetProps) =>
             <div className="mt-7 -mx-[1.38rem] overflow-x-auto scrollbar-hide">
               <div className="flex gap-2 pl-[1.38rem]">
                 {MEDIA_ITEMS.map((item) => (
-                  <MediaBox key={item.label} icon={item.icon} label={item.label} />
+                  <MediaBox
+                    key={item.label}
+                    icon={item.icon}
+                    label={item.label}
+                  />
                 ))}
                 {MOCK_GALLERY_IMAGES.map((src, i) => (
                   <GalleryItem
@@ -61,10 +68,17 @@ export const ChatBottomSheet = ({ open, onOpenChange }: ChatBottomSheetProps) =>
             {/* Contents & Function 섹션 */}
             {MENU_SECTIONS.map((section) => (
               <div key={section.label}>
-                <SectionLabel label={section.label} className={section.className} />
+                <SectionLabel
+                  label={section.label}
+                  className={section.className}
+                />
                 <div className="flex flex-col gap-2 mt-2">
                   {section.items.map((item) => (
-                    <MenuItem key={item.label} icon={item.icon} label={item.label} />
+                    <MenuItem
+                      key={item.label}
+                      icon={item.icon}
+                      label={item.label}
+                    />
                   ))}
                 </div>
               </div>
