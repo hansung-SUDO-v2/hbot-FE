@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import BG from "@/assets/images/main-bg.webp";
+import { Z_INDEX } from "@/constants/zIndex";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 
@@ -31,16 +32,15 @@ const RootLayout = () => {
         {isSidebarOpen && (
           <button
             type="button"
-            className="fixed inset-0 z-36 cursor-default"
+            className="fixed inset-0 cursor-default"
+            style={{ zIndex: Z_INDEX.SIDEBAR_BACKDROP }}
             aria-label="사이드바 닫기"
             onClick={() => setIsSidebarOpen(false)}
           />
         )}
         <div
-          className={clsx(
-            "fixed left-0 top-0 h-screen",
-            isSidebarOpen ? "z-38" : "z-25"
-          )}
+          className="fixed left-0 top-0 h-screen"
+          style={{ zIndex: isSidebarOpen ? Z_INDEX.SIDEBAR_OPEN : Z_INDEX.SIDEBAR_CLOSED }}
         >
           <Sidebar
             isMobileOverlay={true}

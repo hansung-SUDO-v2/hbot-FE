@@ -5,6 +5,7 @@ import {
   MENU_SECTIONS,
   MOCK_GALLERY_IMAGES,
 } from "@/constants/bottomSheet";
+import { Z_INDEX } from "@/constants/zIndex";
 import GalleryItem from "./GalleryItem";
 import MediaBox from "./MediaBox";
 import MenuItem from "./MenuItem";
@@ -19,13 +20,13 @@ export const ChatBottomSheet = ({
   open,
   onOpenChange,
 }: ChatBottomSheetProps) => {
-  const [selectedImages, setSelectedImages] = useState<Set<number>>(new Set());
+  const [selectedImages, setSelectedImages] = useState<Set<string>>(new Set());
 
-  const toggleSelect = (index: number) => {
+  const toggleSelect = (id: string) => {
     setSelectedImages((prev) => {
       const next = new Set(prev);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
       return next;
     });
   };
@@ -33,8 +34,14 @@ export const ChatBottomSheet = ({
   return (
     <Drawer.Root open={open} onOpenChange={onOpenChange}>
       <Drawer.Portal>
-        <Drawer.Overlay className="fixed inset-0 bg-black/40 z-9998" />
-        <Drawer.Content className="fixed bottom-0 left-0 right-0 z-9999 bg-bg-white rounded-t-[1.25rem] outline-none">
+        <Drawer.Overlay
+          className="fixed inset-0 bg-black/40"
+          style={{ zIndex: Z_INDEX.BS_OVERLAY }}
+        />
+        <Drawer.Content
+          className="fixed bottom-0 left-0 right-0 bg-bg-white rounded-t-[1.25rem] outline-none"
+          style={{ zIndex: Z_INDEX.BS_CONTENT }}
+        >
           <Drawer.Title className="sr-only">추가 기능</Drawer.Title>
           <div className="px-[1.38rem] pb-6">
             {/* 손잡이 */}
@@ -52,13 +59,13 @@ export const ChatBottomSheet = ({
                     label={item.label}
                   />
                 ))}
-                {MOCK_GALLERY_IMAGES.map((src, i) => (
+                {MOCK_GALLERY_IMAGES.map((image, i) => (
                   <GalleryItem
-                    key={i}
-                    src={src}
+                    key={image.id}
+                    src={image.src}
                     index={i}
-                    selected={selectedImages.has(i)}
-                    onToggle={toggleSelect}
+                    selected={selectedImages.has(image.id)}
+                    onToggle={() => toggleSelect(image.id)}
                   />
                 ))}
                 <div className="w-[1.38rem] shrink-0" aria-hidden="true" />
