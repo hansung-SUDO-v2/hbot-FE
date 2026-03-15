@@ -127,7 +127,7 @@ const Sidebar = ({
           />
           {expanded && isListVisible && (
             <div
-              className="flex flex-col gap-2 w-full px-2 animate-fadeIn overflow-y-auto shrink-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex flex-col gap-2 w-full px-2 animate-fadeIn overflow-y-auto shrink-0"
               style={{ maxHeight: "calc(100vh - 31rem)" }}
             >
               {chatHistory.map((chat) => (
