@@ -50,8 +50,18 @@
   --color-input-border-from: #005FE2;
   --color-input-border-to: #E2E6A4;
 
+  /* Mobile Chat Input */
+  --color-mobile-add-bg: #C4DCFA;
+  --color-mobile-send: #015FE2;
+  --color-mobile-add-icon: #4274B9;
+
+  /* Bottom Sheet */
+  --color-bs-handle: #A4A4A4;
+  --color-bs-gallery-placeholder: #D9D9D9;
+
   /* Shadow */
   --shadow-input: 0px 2px 17.8px 0px var(--color-tail-outline-loaded);
+  --shadow-mobile-input: 0 1.6px 14.24px 0 rgba(184, 214, 255, 0.44);
 }
 
 @property --tail-angle {

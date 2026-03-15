@@ -8,10 +8,24 @@
   --breakpoint-sm-tablet: 550px; /* 로고-언어 붙는 구간 대응 */
 }
 
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility chat-pl {
-  padding-left: max(2.5rem, calc(50% - 23.5rem));
+  padding-left: max(2.5rem, calc(50% - 38.62rem));
+  @media (max-width: 460px) {
+    padding-left: max(1rem, calc(50% - 38.62rem));
+  }
 }
 
 @utility chat-pr {
-  padding-right: max(2.5rem, calc(50% - 23.5rem));
+  padding-right: max(2.5rem, calc(50% - 34.62rem));
+  @media (max-width: 460px) {
+    padding-right: max(1rem, calc(50% - 34.62rem));
+  }
 }
