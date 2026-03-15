@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import IcArrow from "@/assets/icons/chat/arrow-triangle-turn-up-right-circle-fill-icon.svg";
+import IcArrow from "@/assets/icons/chat/arrow-triangle-turn-up-right-circle-fill-icon.svg?react";
 import { Button } from "../button/Button";
 
 interface SendButtonProps {
@@ -19,9 +19,8 @@ export const SendButton = ({ isDisabled, onClick }: SendButtonProps) => {
           : "border border-transparent bg-primary hover:bg-body-blue cursor-pointer"
       )}
     >
-      <img
-        src={IcArrow}
-        alt="전송"
+      <IcArrow
+        aria-label="전송"
         className={clsx(
           "w-5 h-5 transition-opacity",
           isDisabled ? "opacity-70" : "opacity-100"
