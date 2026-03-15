@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import BG from "@/assets/images/main-bg.webp";
