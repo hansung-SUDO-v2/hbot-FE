@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
+import { MOBILE_BREAKPOINT } from "@/constants/breakpoints";
 
-const MOBILE_BREAKPOINT = 460;
 const QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`;
 
 const subscribe = (callback: () => void) => {

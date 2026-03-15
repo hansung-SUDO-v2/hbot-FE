@@ -18,6 +18,7 @@
 
 @utility chat-pl {
   padding-left: max(2.5rem, calc(50% - 38.62rem));
+  /* constants/breakpoints.ts MOBILE_BREAKPOINT와 동기화 */
   @media (max-width: 460px) {
     padding-left: max(1rem, calc(50% - 38.62rem));
   }
