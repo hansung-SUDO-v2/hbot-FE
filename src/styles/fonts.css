@@ -64,6 +64,15 @@
     letter-spacing: -0.02375rem;
   }
 
+  /* mb-r (모바일 본문) */
+  .text-mb-r {
+    font-family: Pretendard, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    letter-spacing: -0.02375rem;
+  }
+
   /* h5-m */
   .text-h5-m {
     font-family: Pretendard, sans-serif;
