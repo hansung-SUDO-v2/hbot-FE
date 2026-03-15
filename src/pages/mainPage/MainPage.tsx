@@ -13,7 +13,7 @@ const SUGGEST_CHIPS = [
 
 const MainPage = () => {
   return (
-    <div className="flex flex-col items-center gap-6 p-6.25">
+    <div className="flex flex-col items-center gap-6 p-6.25 text-center">
       <section className="flex flex-col gap-2 items-center">
         <p className="text-h4-b max-laptop:text-h5-b text-header-blue">
           HANSUNG AI ASSISTANT

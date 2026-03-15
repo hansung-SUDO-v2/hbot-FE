@@ -14,7 +14,16 @@ const Header = () => {
   const { goTo } = useNavigation();
 
   return (
-    <header className="w-full h-25.5 px-8 max-tablet:px-5 max-sm-tablet:pl-2 max-mobile:px-17.25 flex items-center justify-between shrink-0">
+    <header
+      className="
+    w-full flex items-center justify-between shrink-0
+    px-8 py-9 
+    max-laptop:pb-7.5 
+    max-tablet:px-5 max-tablet:pb-5 
+    max-sm-tablet:pl-2 
+    max-mobile:px-17.25 max-mobile:pt-10.5
+  "
+    >
       {/* 로고: mobile 이하에서 small-logo로 교체 */}
       <button
         type="button"
