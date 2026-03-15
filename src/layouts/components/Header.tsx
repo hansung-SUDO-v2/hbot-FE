@@ -3,11 +3,11 @@ import IconButton from "@/components/button/IconButton";
 import useNavigation from "@/hooks/useNavigation";
 import { URLS } from "@/constants/urls";
 
-import IcLogo from "@/assets/images/logo.svg";
-import IcSmallLogo from "@/assets/images/logo-small.svg";
-import IcLanguage from "@/assets/icons/layouts/language-icon.svg";
-import IcMore from "@/assets/icons/layouts/more2-icon.svg";
-import IcLess from "@/assets/icons/layouts/less2-icon.svg";
+import Logo from "@/assets/images/logo.svg?react";
+import SmallLogo from "@/assets/images/logo-small.svg?react";
+import IcLanguage from "@/assets/icons/layouts/language-icon.svg?react";
+import IcMore from "@/assets/icons/layouts/more2-icon.svg?react";
+import IcLess from "@/assets/icons/layouts/less2-icon.svg?react";
 
 const Header = () => {
   const [isLangOpen, setIsLangOpen] = useState<boolean>(false);
@@ -21,16 +21,8 @@ const Header = () => {
         onClick={() => goTo(URLS.HOME)}
         className="flex items-center outline-none hover:opacity-80 transition-opacity cursor-pointer"
       >
-        <img
-          src={IcLogo}
-          alt="로고"
-          className="w-51.25 max-tablet:w-40 max-sm-tablet:w-33 object-contain max-mobile:hidden"
-        />
-        <img
-          src={IcSmallLogo}
-          alt="로고"
-          className="hidden max-mobile:block object-contain"
-        />
+        <Logo className="w-51.25 max-tablet:w-40 max-sm-tablet:w-33 object-contain max-mobile:hidden" />
+        <SmallLogo className="hidden max-mobile:block object-contain" />
       </button>
 
       {/* 언어, 로그인 버튼: mobile 이하에서 숨김 */}
@@ -41,7 +33,7 @@ const Header = () => {
           onClick={() => setIsLangOpen(!isLangOpen)}
         >
           <IconButton
-            src={IcLanguage}
+            icon={IcLanguage}
             alt="언어"
             className="pointer-events-none max-tablet:w-5 max-tablet:h-5 max-sm-tablet:w-4 max-sm-tablet:h-4"
           />
@@ -49,8 +41,8 @@ const Header = () => {
             Language
           </span>
           <IconButton
-            src={isLangOpen ? IcLess : IcMore}
-            alt="언어"
+            icon={isLangOpen ? IcLess : IcMore}
+            alt="언어 토글"
             className="pointer-events-none max-tablet:w-5 max-tablet:h-5 max-sm-tablet:w-4 max-sm-tablet:h-4"
           />
         </button>

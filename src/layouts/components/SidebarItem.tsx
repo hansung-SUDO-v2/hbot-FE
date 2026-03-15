@@ -1,7 +1,8 @@
+import type React from "react";
 import IconButton from "@/components/button/IconButton";
 
 interface SidebarItemProps {
-  icon: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
   label: string;
   isExpanded: boolean;
   onClick?: () => void;
@@ -36,7 +37,7 @@ const SidebarItem = ({
       <div
         className={`flex items-center w-full pointer-events-none z-10 ${isExpanded ? "gap-2" : ""}`}
       >
-        <IconButton src={icon} alt={label} className="p-0" />
+        <IconButton icon={icon} alt={label} className="p-0" />
 
         {isExpanded && (
           <div className="flex items-center justify-between w-full animate-fadeIn">

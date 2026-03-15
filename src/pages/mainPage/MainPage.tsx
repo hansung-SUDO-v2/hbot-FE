@@ -1,8 +1,8 @@
 import { ChatInput } from "@/components/input/ChatInput";
 import SuggestChip from "./components/SuggestChip";
 import ActionButton from "./components/ActionButton";
-import HomePageButton from "./components/HomepageButton";
-import { ACTION_BUTTONS } from "@/mocks/Actionbuttons.data";
+import HomePageButton from "./components/HomePageButton";
+import { ACTION_BUTTONS } from "@/mocks/ActionButtons.data";
 
 // 임시 추천 질문 데이터
 const SUGGEST_CHIPS = [

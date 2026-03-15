@@ -2,15 +2,15 @@ import { useState } from "react";
 import IconButton from "@/components/button/IconButton";
 import SidebarItem from "./SidebarItem";
 
-import IcMenuBasic from "@/assets/icons/layouts/menu-basic-icon.svg";
-import IcMenuOpen from "@/assets/icons/layouts/menu-open-icon.svg";
-import IcAdd from "@/assets/icons/layouts/add-icon.svg";
-import IcSearch from "@/assets/icons/layouts/search-icon.svg";
-import IcHistory from "@/assets/icons/layouts/history-icon.svg";
-import IcSetting from "@/assets/icons/layouts/settings-icon.svg";
-import IcProfile from "@/assets/icons/layouts/profile-icon.svg";
-import IcMore from "@/assets/icons/layouts/more-icon.svg";
-import IcLess from "@/assets/icons/layouts/less-icon.svg";
+import IcMenuBasic from "@/assets/icons/layouts/menu-basic-icon.svg?react";
+import IcMenuOpen from "@/assets/icons/layouts/menu-open-icon.svg?react";
+import IcAdd from "@/assets/icons/layouts/add-icon.svg?react";
+import IcSearch from "@/assets/icons/layouts/search-icon.svg?react";
+import IcHistory from "@/assets/icons/layouts/history-icon.svg?react";
+import IcSetting from "@/assets/icons/layouts/settings-icon.svg?react";
+import IcProfile from "@/assets/icons/layouts/profile-icon.svg?react";
+import IcMore from "@/assets/icons/layouts/more-icon.svg?react";
+import IcLess from "@/assets/icons/layouts/less-icon.svg?react";
 
 const chatHistory = [
   { id: "chat_001", title: "학점은행제 질문 리스트" },
@@ -74,7 +74,7 @@ const Sidebar = ({
       <div className="flex flex-col gap-14.5 w-full items-start">
         {/* 메뉴 버튼 */}
         <IconButton
-          src={expanded ? IcMenuOpen : IcMenuBasic}
+          icon={expanded ? IcMenuOpen : IcMenuBasic}
           alt="menu"
           onClick={handleToggle}
         />
@@ -104,7 +104,7 @@ const Sidebar = ({
             onClick={() => setIsListVisible(!isListVisible)}
             rightElement={
               <IconButton
-                src={isListVisible ? IcLess : IcMore}
+                icon={isListVisible ? IcLess : IcMore}
                 alt="toggle"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -145,7 +145,7 @@ const Sidebar = ({
           }`}
           onClick={handleSettingClick}
         >
-          <IconButton src={IcSetting} alt="setting" size={26} />
+          <IconButton icon={IcSetting} alt="setting" size={26} />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-r text-chat-text shrink-0">설정</span>
@@ -160,7 +160,7 @@ const Sidebar = ({
           }`}
           onClick={handleProfileClick}
         >
-          <IconButton src={IcProfile} alt="profile" />
+          <IconButton icon={IcProfile} alt="profile" />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-m text-sub shrink-0">홍길동</span>
