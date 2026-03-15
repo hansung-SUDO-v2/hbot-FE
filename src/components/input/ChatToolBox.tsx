@@ -1,5 +1,5 @@
-import IcAdd from "@/assets/icons/ic_add.svg";
-import IcAttachFile from "@/assets/icons/ic_attach_file.svg";
+import IcAdd from "@/assets/icons/chat/add-icon.svg";
+import IcAttachFile from "@/assets/icons/chat/attach-file-icon.svg";
 import { SendButton } from "./SendButton";
 
 interface ChatToolboxProps {
