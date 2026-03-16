@@ -90,3 +90,10 @@
   font-size: 1rem;
   font-weight: 500;
 }
+
+/* mb-r (모바일 본문) */
+@utility text-mb-r {
+  @apply typo-base;
+  font-size: 1.125rem;
+  font-weight: 400;
+}

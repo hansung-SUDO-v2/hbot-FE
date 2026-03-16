@@ -2,4 +2,8 @@
 @import './styles/color.css';
 @import './styles/fonts.css';
 @import './styles/theme.css';
+
+@theme {
+  --font-sans: 'Pretendard', sans-serif;
+}
 @import './styles/animation.css';
