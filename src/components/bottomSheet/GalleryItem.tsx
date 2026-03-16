@@ -22,7 +22,7 @@ const GalleryItem = ({ src, index, selected, onToggle }: GalleryItemProps) => (
     <IcSelect
       className={clsx(
         "absolute top-2 right-2 w-6 h-6",
-        selected && "[&_circle]:fill-white"
+        selected && "[&_circle:last-child]:fill-white"
       )}
     />
   </button>
