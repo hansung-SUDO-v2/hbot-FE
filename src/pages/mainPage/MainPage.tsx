@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ChatInput } from "@/components/input/ChatInput";
 import ActionButton from "./components/ActionButton";
 import HomePageButton from "./components/HomePageButton";
@@ -7,44 +8,87 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 
 const MainPage = () => {
   const isMobile = useIsMobile();
+  const [viewportHeight, setViewportHeight] = useState("100dvh");
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isMobile || !window.visualViewport) return;
+
+    const handleResize = () => {
+      const vv = window.visualViewport!;
+      setViewportHeight(`${vv.height}px`);
+      setIsKeyboardOpen(vv.height < window.innerHeight * 0.8);
+      window.scrollTo(0, 0);
+    };
+
+    window.visualViewport.addEventListener("resize", handleResize);
+    window.visualViewport.addEventListener("scroll", handleResize);
+    return () => {
+      window.visualViewport?.removeEventListener("resize", handleResize);
+      window.visualViewport?.removeEventListener("scroll", handleResize);
+    };
+  }, [isMobile]);
+
+  const containerStyle = isMobile
+    ? "absolute inset-0 flex flex-col items-center overflow-hidden pt-28"
+    : "flex flex-col items-center gap-6 pt-[10dvh]";
 
   return (
-    <div className="flex flex-col items-center gap-6 p-6.25 max-mobile:px-0 text-center">
-      <section className="flex flex-col gap-2 items-center">
-        <p className="text-h4-b max-laptop:text-h5-b max-mobile:text-h5-m text-header-blue">
-          HANSUNG AI ASSISTANT
-        </p>
-        <p className="text-h1-b max-laptop:text-h2-b max-mobile:text-h4-b text-body">
-          한성대 AI 워크스페이스
-        </p>
-      </section>
-      <p className="text-r-28 max-laptop:text-r-22 max-mobile:text-h5-r text-body mt-7.75 max-laptop:mt-5 max-mobile:mt-2.75 mb-5.75 max-laptop:mb-4 max-mobile:mb-0 animate-dissolve">
-        안녕하세요, 무엇을 도와드릴까요?
-      </p>
+    <div
+      className={`w-full text-center transition-all duration-300 ${containerStyle}`}
+      style={isMobile ? { height: viewportHeight } : {}}
+    >
+      <div
+        className={`w-full flex flex-col items-center shrink-0 transition-all ${
+          isMobile && isKeyboardOpen ? "pt-4" : "pt-0"
+        }`}
+      >
+        <section className="flex flex-col gap-2 items-center">
+          <p className="text-h4-b max-laptop:text-h5-b max-mobile:text-h5-m text-header-blue">
+            HANSUNG AI ASSISTANT
+          </p>
+          <p className="text-h1-b max-laptop:text-h2-b max-mobile:text-h4-b text-body">
+            한성대 AI 워크스페이스
+          </p>
+        </section>
 
-      {/* 추천 문장 */}
-      <SuggestChipGroup />
-
-      <div className="w-full main-chat-pl main-chat-pr">
-        <ChatInput />
+        <p className="text-r-28 max-laptop:text-r-22 max-mobile:text-h5-r text-body mt-7.75 max-laptop:mt-6 max-mobile:mt-5.25 mb-5.75 max-laptop:mb-4 max-mobile:mb-2 animate-dissolve">
+          안녕하세요, 무엇을 도와드릴까요?
+        </p>
       </div>
 
-      {!isMobile && (
-        <>
-          <section className="flex gap-4 max-laptop:gap-3.25 pt-4 max-laptop:pt-2">
-            {ACTION_BUTTONS.map(({ variant, label }) => (
-              <ActionButton
-                key={variant}
-                variant={variant}
-                label={label}
-                onClick={() => {}}
-              />
-            ))}
-          </section>
+      {/* 추천 문장 */}
+      <div
+        className={`w-full flex flex-col items-center ${isMobile ? "flex-1 overflow-y-auto no-scrollbar py-2" : ""}`}
+      >
+        <SuggestChipGroup />
+      </div>
 
-          <HomePageButton />
-        </>
-      )}
+      <div
+        className={`w-full main-chat-pl main-chat-pr max-mobile:px-4 shrink-0 ${
+          isMobile ? "mt-auto pb-6" : "pb-10"
+        }`}
+      >
+        <div className="w-full">
+          <ChatInput />
+        </div>
+
+        {!isMobile && (
+          <>
+            <section className="flex justify-center gap-4 max-laptop:gap-3.25 pt-4 max-laptop:pt-2">
+              {ACTION_BUTTONS.map(({ variant, label }) => (
+                <ActionButton
+                  key={variant}
+                  variant={variant}
+                  label={label}
+                  onClick={() => {}}
+                />
+              ))}
+            </section>
+            <HomePageButton />
+          </>
+        )}
+      </div>
     </div>
   );
 };
