@@ -8,7 +8,9 @@
 }
 @import './styles/animation.css';
 
-/* html, body {
-  overflow: hidden; 
-  overscroll-behavior-y: none; 
-} */
+html, body {
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}

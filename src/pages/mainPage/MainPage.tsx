@@ -1,33 +1,15 @@
-import { useState, useEffect } from "react";
 import { ChatInput } from "@/components/input/ChatInput";
 import ActionButton from "./components/ActionButton";
 import HomePageButton from "./components/HomePageButton";
 import SuggestChipGroup from "./components/SuggestChipGroup";
 import { ACTION_BUTTONS } from "@/constants/actionButtons";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useVisualViewport } from "@/hooks/useVisualViewport";
 
 const MainPage = () => {
   const isMobile = useIsMobile();
-  const [viewportHeight, setViewportHeight] = useState("100dvh");
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
 
-  useEffect(() => {
-    if (!isMobile || !window.visualViewport) return;
-
-    const handleResize = () => {
-      const vv = window.visualViewport!;
-      setViewportHeight(`${vv.height}px`);
-      setIsKeyboardOpen(vv.height < window.innerHeight * 0.8);
-      window.scrollTo(0, 0);
-    };
-
-    window.visualViewport.addEventListener("resize", handleResize);
-    window.visualViewport.addEventListener("scroll", handleResize);
-    return () => {
-      window.visualViewport?.removeEventListener("resize", handleResize);
-      window.visualViewport?.removeEventListener("scroll", handleResize);
-    };
-  }, [isMobile]);
+  const { viewportHeight, isKeyboardOpen } = useVisualViewport(isMobile);
 
   const containerStyle = isMobile
     ? "absolute inset-0 flex flex-col items-center overflow-hidden pt-28"
@@ -59,7 +41,9 @@ const MainPage = () => {
 
       {/* 추천 문장 */}
       <div
-        className={`w-full flex flex-col items-center ${isMobile ? "flex-1 overflow-y-auto no-scrollbar py-2" : ""}`}
+        className={`w-full flex flex-col items-center ${
+          isMobile ? "flex-1 overflow-y-auto no-scrollbar py-2" : ""
+        }`}
       >
         <SuggestChipGroup />
       </div>
@@ -75,7 +59,7 @@ const MainPage = () => {
 
         {!isMobile && (
           <>
-            <section className="flex justify-center gap-4 max-laptop:gap-3.25 pt-4 max-laptop:pt-2">
+            <section className="flex justify-center gap-4 max-laptop:gap-3.25 pt-10 max-laptop:pt-8">
               {ACTION_BUTTONS.map(({ variant, label }) => (
                 <ActionButton
                   key={variant}
