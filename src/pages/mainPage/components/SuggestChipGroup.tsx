@@ -1,5 +1,6 @@
 import SuggestChip from "./SuggestChip";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useVisualViewport } from "@/hooks/useVisualViewport";
 
 // 임시 추천 문장 데이터
 const SUGGEST_CHIPS = [
@@ -13,40 +14,55 @@ const SUGGEST_CHIPS = [
 
 const SuggestChipGroup = () => {
   const isMobile = useIsMobile();
+  const { isKeyboardOpen } = useVisualViewport(isMobile);
 
   const topChips = SUGGEST_CHIPS.slice(0, 3);
   const bottomChips = SUGGEST_CHIPS.slice(3, 6);
 
   if (isMobile) {
+    // 키보드가 올라왔을 때: 6개 1줄
+    if (isKeyboardOpen) {
+      return (
+        <div className="w-full overflow-x-auto no-scrollbar flex gap-3 px-4 py-2">
+          {SUGGEST_CHIPS.map(({ variant, label }) => (
+            <div key={`kb-${variant}`} className="whitespace-nowrap shrink-0">
+              <SuggestChip variant={variant} label={label} />
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    // 모바일: 3개씩 2줄 마키 애니메이션
     return (
       <div className="w-full overflow-hidden flex flex-col gap-4 py-4">
-        <div className="flex w-max animate-marquee gap-4 pr-4 hover:[animation-play-state:paused]">
+        <div className="flex w-max animate-marquee gap-4 pr-4">
           {topChips.map(({ variant, label }) => (
             <SuggestChip
-              key={`top-first-${variant}`}
+              key={`top-f-${variant}`}
               variant={variant}
               label={label}
             />
           ))}
           {topChips.map(({ variant, label }) => (
             <SuggestChip
-              key={`top-second-${variant}`}
+              key={`top-s-${variant}`}
               variant={variant}
               label={label}
             />
           ))}
         </div>
-        <div className="flex w-max animate-marquee gap-4 pr-4 hover:[animation-play-state:paused]">
+        <div className="flex w-max animate-marquee gap-4 pr-4">
           {bottomChips.map(({ variant, label }) => (
             <SuggestChip
-              key={`bottom-first-${variant}`}
+              key={`bot-f-${variant}`}
               variant={variant}
               label={label}
             />
           ))}
           {bottomChips.map(({ variant, label }) => (
             <SuggestChip
-              key={`bottom-second-${variant}`}
+              key={`bot-s-${variant}`}
               variant={variant}
               label={label}
             />
