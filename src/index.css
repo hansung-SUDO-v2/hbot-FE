@@ -6,3 +6,4 @@
 @theme {
   --font-sans: 'Pretendard', sans-serif;
 }
+@import './styles/animation.css';
