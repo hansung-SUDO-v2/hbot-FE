@@ -26,7 +26,7 @@ const MainPage = () => {
         안녕하세요, 무엇을 도와드릴까요?
       </p>
 
-      <section className="flex gap-6">
+      <section className="flex gap-6 max-laptop:gap-4 max-tablet:gap-3">
         {SUGGEST_CHIPS.map(({ variant, label }) => (
           <SuggestChip key={variant} variant={variant} label={label} />
         ))}

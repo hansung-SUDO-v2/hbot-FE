@@ -17,8 +17,8 @@ const SuggestChip = ({ variant, label, onClick }: SuggestChipProps) => {
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center px-6.25 py-[0.83rem] max-laptop:px-5 max-laptop:py-2.75 rounded-3xl shadow-suggest
-        border text-h5-r max-laptop:text-h6-r whitespace-nowrap bg-bg-white
+      className={`inline-flex items-center px-6.25 py-[0.83rem] max-laptop:px-5 max-laptop:py-2.75 max-tablet:px-4 max-tablet:py-2 rounded-3xl shadow-suggest
+        border text-h5-r max-laptop:text-h6-r max-tablet:text-r-12  whitespace-nowrap bg-bg-white
         transition-opacity duration-150
         hover:opacity-70 active:scale-95 cursor-pointer ${variantStyles[variant]}
       `}
