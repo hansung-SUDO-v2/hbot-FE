@@ -37,32 +37,19 @@ const SuggestChipGroup = () => {
     return (
       <div className="w-full overflow-hidden flex flex-col gap-4 py-4">
         <div className="flex w-max animate-marquee gap-4 pr-4">
-          {topChips.map(({ variant, label }) => (
+          {[...topChips, ...topChips].map(({ variant, label }, index) => (
             <SuggestChip
-              key={`top-f-${variant}`}
-              variant={variant}
-              label={label}
-            />
-          ))}
-          {topChips.map(({ variant, label }) => (
-            <SuggestChip
-              key={`top-s-${variant}`}
+              key={`top-${variant}-${index < topChips.length ? "orig" : "clone"}`}
               variant={variant}
               label={label}
             />
           ))}
         </div>
+
         <div className="flex w-max animate-marquee gap-4 pr-4">
-          {bottomChips.map(({ variant, label }) => (
+          {[...bottomChips, ...bottomChips].map(({ variant, label }, index) => (
             <SuggestChip
-              key={`bot-f-${variant}`}
-              variant={variant}
-              label={label}
-            />
-          ))}
-          {bottomChips.map(({ variant, label }) => (
-            <SuggestChip
-              key={`bot-s-${variant}`}
+              key={`bot-${variant}-${index < bottomChips.length ? "orig" : "clone"}`}
               variant={variant}
               label={label}
             />
