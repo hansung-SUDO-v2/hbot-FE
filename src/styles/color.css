@@ -4,8 +4,9 @@
   --color-body-blue: #004098;
   --color-sub-blue: #E4EFFD;
   --color-primary-disabled: #005FE299;
-  --color-header-blue: #002E6e;
+  --color-header-blue: #002E6E;
   --color-list-blue: #4574B3;
+  --color-scrollbar-blue: #AEC5E7;
 
   /* Grayscale */
   --color-body: #2A2A2A;
@@ -42,9 +43,9 @@
   --color-sidebar-bg: #FFFFFF52;
 
   /* Suggested Question Colors */
-  --color-suggest-1: #002E6E;
-  --color-suggest-2: #9747FF;
-  --color-suggest-3: #918A3D;
+  --color-suggest-1: #7991B3;
+  --color-suggest-2: #C59EFC;
+  --color-suggest-3: #C1BF9A;
 
   /* Main Input Border Gradient */
   --color-input-border-from: #005FE2;
@@ -52,6 +53,7 @@
 
   /* Shadow */
   --shadow-input: 0px 2px 17.8px 0px var(--color-tail-outline-loaded);
+  --shadow-suggest: 0px 0px 4px 0px #0000001A;
 }
 
 @property --tail-angle {

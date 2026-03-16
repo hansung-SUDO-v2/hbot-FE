@@ -1,75 +1,92 @@
 @import 'pretendard/dist/web/variable/pretendardvariable.css';
 
-@layer components {
-  /* h1-B */
-  .text-h1-b {
-    font-family: Pretendard, sans-serif;
-    font-size: 3rem;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.02375rem;
-  }
+/* 공통 텍스트 스타일 */
+@utility typo-base {
+  font-family: Pretendard, sans-serif;
+  line-height: normal;
+  letter-spacing: -0.02375rem;
+}
 
-  /* h4-b */
-  .text-h4-b {
-    font-family: Pretendard, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.02375rem;
-  }
+/* h1-B */
+@utility text-h1-b {
+  @apply typo-base;
+  font-size: 3rem;
+  font-weight: 600;
+}
 
-  /* r-28 */
-  .text-r-28 {
-    font-family: Pretendard, sans-serif;
-    font-size: 1.75rem;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02375rem;
-  }
+/* h2-b */
+@utility text-h2-b {
+  @apply typo-base;
+  font-size: 2.375rem;
+  font-weight: 600;
+}
 
-  /* h5-r */
-  .text-h5-r {
-    font-family: Pretendard, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02375rem;
-  }
+/* h4-b */
+@utility text-h4-b {
+  @apply typo-base;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
-  /* r-12 */
-  .text-r-12 {
-    font-family: Pretendard, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.02375rem;
-  }
+/* h5-b */
+@utility text-h5-b {
+  @apply typo-base;
+  font-size: 1.1875rem;
+  font-weight: 600;
+}
 
-  /* r-20 */
-  .text-r-20 {
-    font-family: Pretendard, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    line-height: 150%;
-    letter-spacing: -0.02375rem;
-  }
+/* r-28 */
+@utility text-r-28 {
+  @apply typo-base;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
 
-  /* m-20 */
-  .text-m-20 {
-    font-family: Pretendard, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.02375rem;
-  }
+/* r-22 */
+@utility text-r-22 {
+  @apply typo-base;
+  font-size: 1.375rem;
+  font-weight: 400;
+}
 
-  /* h5-m */
-  .text-h5-m {
-    font-family: Pretendard, sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.02375rem;
-  }
+/* h5-r */
+@utility text-h5-r {
+  @apply typo-base;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* h6-r */
+@utility text-h6-r {
+  @apply typo-base;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+/* r-12 */
+@utility text-r-12 {
+  @apply typo-base;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* r-20 */
+@utility text-r-20 {
+  @apply typo-base;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+/* m-20 */
+@utility text-m-20 {
+  @apply typo-base;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* h5-m */
+@utility text-h5-m {
+  @apply typo-base;
+  font-size: 1rem;
+  font-weight: 500;
 }

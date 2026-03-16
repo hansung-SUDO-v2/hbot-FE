@@ -1,15 +1,16 @@
 import { useState } from "react";
-import ADD from "@/assets/icons/layouts/add-icon.svg";
-import HISTORY from "@/assets/icons/layouts/history-icon.svg";
-import LESS from "@/assets/icons/layouts/less-icon.svg";
-import MENU_BASIC from "@/assets/icons/layouts/menu-basic-icon.svg";
-import MENU_OPEN from "@/assets/icons/layouts/menu-open-icon.svg";
-import MORE from "@/assets/icons/layouts/more-icon.svg";
-import PROFILE from "@/assets/icons/layouts/profile-icon.svg";
-import SEARCH from "@/assets/icons/layouts/search-icon.svg";
-import SETTING from "@/assets/icons/layouts/settings-icon.svg";
 import IconButton from "@/components/button/IconButton";
 import SidebarItem from "./SidebarItem";
+
+import IcMenuBasic from "@/assets/icons/layouts/menu-basic-icon.svg?react";
+import IcMenuOpen from "@/assets/icons/layouts/menu-open-icon.svg?react";
+import IcAdd from "@/assets/icons/layouts/add-icon.svg?react";
+import IcSearch from "@/assets/icons/layouts/search-icon.svg?react";
+import IcHistory from "@/assets/icons/layouts/history-icon.svg?react";
+import IcSetting from "@/assets/icons/layouts/settings-icon.svg?react";
+import IcProfile from "@/assets/icons/layouts/profile-icon.svg?react";
+import IcMore from "@/assets/icons/layouts/more-icon.svg?react";
+import IcLess from "@/assets/icons/layouts/less-icon.svg?react";
 
 const chatHistory = [
   { id: "chat_001", title: "학점은행제 질문 리스트" },
@@ -50,6 +51,18 @@ const Sidebar = ({
 
   const isMobileOnly = isMobileOverlay;
 
+  // 기록 버튼 핸들러
+  const handleHistoryClick = () => {
+    if (!expanded) {
+      // 닫힘: 사이드바를 열고, 리스트도 무조건 보이게
+      if (handleToggle) handleToggle();
+      setIsListVisible(true);
+    } else {
+      // 열림: 사이드바는 그대로 두고 리스트만 토글
+      setIsListVisible(!isListVisible);
+    }
+  };
+
   const handleSettingClick = () => {};
   const handleProfileClick = () => {};
 
@@ -73,7 +86,7 @@ const Sidebar = ({
       <div className="flex flex-col gap-14.5 w-full items-start">
         {/* 메뉴 버튼 */}
         <IconButton
-          src={expanded ? MENU_OPEN : MENU_BASIC}
+          icon={expanded ? IcMenuOpen : IcMenuBasic}
           alt="menu"
           onClick={handleToggle}
         />
@@ -85,25 +98,25 @@ const Sidebar = ({
           }`}
         >
           <SidebarItem
-            icon={ADD}
+            icon={IcAdd}
             label="새 채팅"
             isExpanded={expanded}
             onClick={() => {}}
           />
           <SidebarItem
-            icon={SEARCH}
+            icon={IcSearch}
             label="검색"
             isExpanded={expanded}
             onClick={() => {}}
           />
           <SidebarItem
-            icon={HISTORY}
+            icon={IcHistory}
             label="기록"
             isExpanded={expanded}
-            onClick={() => setIsListVisible(!isListVisible)}
+            onClick={handleHistoryClick}
             rightElement={
               <IconButton
-                src={isListVisible ? LESS : MORE}
+                icon={isListVisible ? IcLess : IcMore}
                 alt="toggle"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -114,7 +127,7 @@ const Sidebar = ({
           />
           {expanded && isListVisible && (
             <div
-              className="flex flex-col gap-2 w-full px-2 animate-fadeIn overflow-y-auto shrink-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex flex-col gap-2 w-full px-2 animate-fadeIn overflow-y-auto shrink-0"
               style={{ maxHeight: "calc(100vh - 31rem)" }}
             >
               {chatHistory.map((chat) => (
@@ -144,7 +157,7 @@ const Sidebar = ({
           }`}
           onClick={handleSettingClick}
         >
-          <IconButton src={SETTING} alt="setting" size={26} />
+          <IconButton icon={IcSetting} alt="setting" size={26} />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-r text-chat-text shrink-0">설정</span>
@@ -159,7 +172,7 @@ const Sidebar = ({
           }`}
           onClick={handleProfileClick}
         >
-          <IconButton src={PROFILE} alt="profile" />
+          <IconButton icon={IcProfile} alt="profile" />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-m text-sub shrink-0">홍길동</span>
