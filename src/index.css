@@ -7,3 +7,8 @@
   --font-sans: 'Pretendard', sans-serif;
 }
 @import './styles/animation.css';
+
+html, body {
+  overflow: hidden; 
+  overscroll-behavior-y: none; 
+}

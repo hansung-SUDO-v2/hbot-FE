@@ -9,7 +9,7 @@ const RootLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   return (
-    <div className="relative flex w-full h-screen overflow-hidden">
+    <div className="relative flex w-full h-screen">
       {/* 배경 이미지 */}
       <div
         className="absolute inset-0 -z-10 w-full h-full"
@@ -39,7 +39,11 @@ const RootLayout = () => {
         )}
         <div
           className="fixed left-0 top-0 h-screen"
-          style={{ zIndex: isSidebarOpen ? Z_INDEX.SIDEBAR_OPEN : Z_INDEX.SIDEBAR_CLOSED }}
+          style={{
+            zIndex: isSidebarOpen
+              ? Z_INDEX.SIDEBAR_OPEN
+              : Z_INDEX.SIDEBAR_CLOSED,
+          }}
         >
           <Sidebar
             isMobileOverlay={true}
