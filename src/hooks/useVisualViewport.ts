@@ -1,58 +1,62 @@
-// 모바일에서 키보드가 올라올 때 변하는 실제 화면 높이와 키보드 활성화 상태를 감지하여 반환하는 훅
-import { useSyncExternalStore } from "react";
+import { useRef, useSyncExternalStore } from "react";
 
-const subscribe = (callback: () => void) => {
-  const vv = window.visualViewport;
-  if (!vv) return () => {};
-
-  const handleUpdate = () => {
-    // 인풋 포커스로 인해 브라우저가 레이아웃을 밀어올릴 때 즉시 0으로 고정
-    if (window.scrollY !== 0) {
-      window.scrollTo(0, 0);
-    }
-    callback();
-  };
-
-  vv.addEventListener("resize", handleUpdate);
-  vv.addEventListener("scroll", handleUpdate);
-
-  // 인풋 포커스 시 발생하는 강제 스크롤 방지
-  window.addEventListener("scroll", handleUpdate);
-
-  return () => {
-    vv.removeEventListener("resize", handleUpdate);
-    vv.removeEventListener("scroll", handleUpdate);
-    window.removeEventListener("scroll", handleUpdate);
-  };
-};
-
-const getSnapshot = () => {
-  const vv = window.visualViewport;
-  if (!vv) return "100dvh|false";
-
-  if (vv.offsetTop > 0) {
-    window.scrollTo(0, 0);
-  }
-
-  const height = `${vv.height}px`;
-  const isKeyboardOpen = vv.height < window.innerHeight * 0.8;
-
-  return `${height}|${isKeyboardOpen}`;
-};
-
-const getServerSnapshot = () => "100dvh|false";
+const getServerSnapshot = () => "0|false";
 
 export const useVisualViewport = (isMobile: boolean) => {
+  const initialHeightRef = useRef(
+    typeof window !== "undefined"
+      ? (window.visualViewport?.height ?? window.innerHeight)
+      : 0
+  );
+
+  const stableHeightRef = useRef(initialHeightRef.current);
+  const stableOffsetTopRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const listenerRef = useRef<(() => void) | null>(null);
+
+  const subscribe = useRef((callback: () => void) => {
+    const vv = window.visualViewport;
+    if (!vv) return () => {};
+
+    listenerRef.current = () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        const height = vv.height;
+        if (height && height >= 300) {
+          stableHeightRef.current = height;
+          stableOffsetTopRef.current = vv.offsetTop ?? 0;
+        }
+        callback();
+      }, 150);
+    };
+
+    vv.addEventListener("resize", listenerRef.current);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (listenerRef.current)
+        vv.removeEventListener("resize", listenerRef.current);
+    };
+  }).current;
+
+  const getSnapshot = () => {
+    const height = stableHeightRef.current;
+    const offsetTop = stableOffsetTopRef.current;
+    const isKeyboardOpen = height < initialHeightRef.current * 0.75;
+    return `${height}|${isKeyboardOpen}|${offsetTop}`;
+  };
+
   const snapshot = useSyncExternalStore(
     isMobile ? subscribe : () => () => {},
     isMobile ? getSnapshot : getServerSnapshot,
     getServerSnapshot
   );
 
-  const [viewportHeight, isKeyboardOpenStr] = snapshot.split("|");
+  const [viewportHeight, isKeyboardOpenStr, offsetTop] = snapshot.split("|");
 
   return {
-    viewportHeight,
+    viewportHeight: viewportHeight ? `${viewportHeight}px` : "100dvh",
     isKeyboardOpen: isKeyboardOpenStr === "true",
+    offsetTop: offsetTop ? `${offsetTop}px` : "0px",
   };
 };

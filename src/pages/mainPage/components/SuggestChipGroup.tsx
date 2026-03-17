@@ -2,7 +2,6 @@ import SuggestChip from "./SuggestChip";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useVisualViewport } from "@/hooks/useVisualViewport";
 
-// 임시 추천 문장 데이터
 const SUGGEST_CHIPS = [
   { variant: 1, label: "올해 미디어 디자인 트랙 졸업 요건이 뭐야?" },
   { variant: 2, label: "세미나실 이용하려면 어떻게 해?" },
@@ -20,41 +19,49 @@ const SuggestChipGroup = () => {
   const bottomChips = SUGGEST_CHIPS.slice(3, 6);
 
   if (isMobile) {
-    // 키보드가 올라왔을 때: 6개 1줄
-    if (isKeyboardOpen) {
-      return (
-        <div className="w-full overflow-x-auto no-scrollbar flex gap-3 px-4 py-2">
-          {SUGGEST_CHIPS.map(({ variant, label }) => (
-            <div key={`kb-${variant}`} className="whitespace-nowrap shrink-0">
-              <SuggestChip variant={variant} label={label} />
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    // 모바일: 3개씩 2줄 마키 애니메이션
     return (
-      <div className="w-full overflow-hidden flex flex-col gap-4 py-4">
-        <div className="flex w-max animate-marquee gap-4 pr-4">
-          {[...topChips, ...topChips].map(({ variant, label }, index) => (
-            <SuggestChip
-              key={`top-${variant}-${index < topChips.length ? "orig" : "clone"}`}
-              variant={variant}
-              label={label}
-            />
-          ))}
-        </div>
-
-        <div className="flex w-max animate-marquee gap-4 pr-4">
-          {[...bottomChips, ...bottomChips].map(({ variant, label }, index) => (
-            <SuggestChip
-              key={`bot-${variant}-${index < bottomChips.length ? "orig" : "clone"}`}
-              variant={variant}
-              label={label}
-            />
-          ))}
-        </div>
+      <div className="w-full overflow-hidden flex flex-col gap-4 py-4 transition-all duration-500">
+        {isKeyboardOpen ? (
+          /* 키보드 활성 시: 6개 1줄 마키 애니메이션 */
+          <div className="flex w-max animate-marquee gap-4 px-4">
+            {[...SUGGEST_CHIPS, ...SUGGEST_CHIPS].map(
+              ({ variant, label }, index) => (
+                <div
+                  key={`kb-${variant}-${index < SUGGEST_CHIPS.length ? "orig" : "clone"}`}
+                  className="shrink-0"
+                >
+                  <SuggestChip variant={variant} label={label} />
+                </div>
+              )
+            )}
+          </div>
+        ) : (
+          /* 평상시: 3개씩 2줄 마키 애니메이션 */
+          <>
+            <div className="flex w-max animate-marquee gap-4 px-4">
+              {[...topChips, ...topChips].map(({ variant, label }, index) => (
+                <div
+                  key={`top-${variant}-${index < topChips.length ? "orig" : "clone"}`}
+                  className="shrink-0"
+                >
+                  <SuggestChip variant={variant} label={label} />
+                </div>
+              ))}
+            </div>
+            <div className="flex w-max animate-marquee gap-4 px-4">
+              {[...bottomChips, ...bottomChips].map(
+                ({ variant, label }, index) => (
+                  <div
+                    key={`bot-${variant}-${index < bottomChips.length ? "orig" : "clone"}`}
+                    className="shrink-0"
+                  >
+                    <SuggestChip variant={variant} label={label} />
+                  </div>
+                )
+              )}
+            </div>
+          </>
+        )}
       </div>
     );
   }

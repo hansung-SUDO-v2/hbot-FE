@@ -58,7 +58,7 @@ const RootLayout = () => {
         <Header />
 
         {/* 메인 콘텐츠 */}
-        <main className="flex-1 overflow-auto bg-transparent">
+        <main className="flex-1 overflow-hidden bg-transparent min-h-0">
           <Outlet />
         </main>
       </div>
