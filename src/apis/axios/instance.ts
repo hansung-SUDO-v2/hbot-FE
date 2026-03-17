@@ -8,6 +8,10 @@ import type {
 
 const BASE_URL: string = import.meta.env.VITE_API_BASE_URL;
 
+if (!BASE_URL) {
+  throw new Error("VITE_API_BASE_URL is not set");
+}
+
 // A. 요청 핸들러
 const onRequestFulfilled = (
   config: InternalAxiosRequestConfig
@@ -48,8 +52,7 @@ export const defaultInstance: AxiosInstance = axios.create(axiosConfig);
 
 // 3. 인증 필요 인스턴스 (Multipart/FormData)
 export const multiInstance: AxiosInstance = axios.create({
-  ...axiosConfig,
-  headers: {},
+  baseURL: BASE_URL,
 });
 
 // 인터셉터 등록
