@@ -12,7 +12,7 @@ const MainPage = () => {
 
   return (
     <div
-      className={`w-full text-center flex flex-col items-center overflow-hidden ${
+      className={`w-full text-center flex flex-col items-center overflow-hidden scrollbar-hide ${
         isMobile ? "pt-28" : "gap-6 pt-[10dvh]"
       }`}
       style={
