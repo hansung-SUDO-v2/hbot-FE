@@ -59,7 +59,7 @@
 /* h6-r */
 @utility text-h6-r {
   @apply typo-base;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 400;
 }
 

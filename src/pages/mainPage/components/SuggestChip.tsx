@@ -1,4 +1,4 @@
-type SuggestChipVariant = 1 | 2 | 3;
+type SuggestChipVariant = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface SuggestChipProps {
   label: string;
@@ -10,6 +10,9 @@ const variantStyles: Record<SuggestChipVariant, string> = {
   1: "border-suggest-1 text-suggest-1",
   2: "border-suggest-2 text-suggest-2",
   3: "border-suggest-3 text-suggest-3",
+  4: "border-suggest-2 text-suggest-2",
+  5: "border-suggest-3 text-suggest-3",
+  6: "border-suggest-1 text-suggest-1",
 };
 
 const SuggestChip = ({ variant, label, onClick }: SuggestChipProps) => {
@@ -17,8 +20,8 @@ const SuggestChip = ({ variant, label, onClick }: SuggestChipProps) => {
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center px-6.25 py-[0.83rem] max-laptop:px-5 max-laptop:py-2.75 rounded-3xl shadow-suggest
-        border text-h5-r max-laptop:text-h6-r whitespace-nowrap bg-bg-white
+      className={`inline-flex items-center px-6.25 py-[0.83rem] max-laptop:px-5 max-laptop:py-2.75 max-tablet:px-4 rounded-3xl shadow-suggest
+        border text-h5-r max-laptop:text-h6-r max-tablet:text-r-12  whitespace-nowrap bg-bg-white
         transition-opacity duration-150
         hover:opacity-70 active:scale-95 cursor-pointer ${variantStyles[variant]}
       `}

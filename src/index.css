@@ -7,3 +7,10 @@
   --font-sans: 'Pretendard', sans-serif;
 }
 @import './styles/animation.css';
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}

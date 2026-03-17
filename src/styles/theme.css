@@ -3,7 +3,7 @@
   --breakpoint-desktop: 1366px;    /* 1366 이하 */
   --breakpoint-laptop: 1024px;     /* 1024 이하 */
   --breakpoint-tablet: 720px;      /* 720 이하 */
-  --breakpoint-mobile: 460px;      /* 460 이하 (모바일) */
+  --breakpoint-mobile: 461px;      /* 460 이하 (모바일) */
 
   --breakpoint-sm-tablet: 550px; /* 로고-언어 붙는 구간 대응 */
 }
@@ -18,7 +18,7 @@
 /* 스크롤바 */
   ::-webkit-scrollbar {
     width: 0.5rem;
-    /* height: 0.5rem; */
+    height: 0.5rem;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
