@@ -15,3 +15,12 @@ export interface ApiEnvelope<T> extends ApiBase {
 export interface ApiEnvelopeNullable<T> extends ApiBase {
   data: T | null;
 }
+
+// 페이지네이션 구조
+export interface PageResponse<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  currentPage: number;
+  size: number;
+}
