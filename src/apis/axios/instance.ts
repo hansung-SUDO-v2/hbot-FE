@@ -1,40 +1,16 @@
 import axios from "axios";
-import type {
-  AxiosInstance,
-  InternalAxiosRequestConfig,
-  AxiosResponse,
-  AxiosError,
-} from "axios";
+import type { AxiosInstance } from "axios";
+import {
+  onRequestFulfilled,
+  onResponseFulfilled,
+  onResponseRejected,
+} from "./interceptors";
 
 const BASE_URL: string = import.meta.env.VITE_API_BASE_URL;
 
 if (!BASE_URL) {
   throw new Error("VITE_API_BASE_URL is not set");
 }
-
-// A. 요청 핸들러
-const onRequestFulfilled = (
-  config: InternalAxiosRequestConfig
-): InternalAxiosRequestConfig => {
-  /* authStore 구현 시 주석 해제
-  const accessToken = useAuthStore.getState().accessToken; 
-  if (accessToken && config.headers) {
-    config.headers.Authorization = `Bearer ${accessToken}`;
-  }
-  */
-  return config;
-};
-
-// B. 응답 에러 핸들러
-const onResponseRejected = (error: AxiosError): Promise<never> => {
-  if (error.response?.status === 401) {
-    console.warn("인증이 만료되었습니다.");
-    // logout() 로직 호출
-  }
-  return Promise.reject(error);
-};
-
-// --- 인스턴스 생성 ---
 
 // 공통 설정을 위한 인터페이스
 const axiosConfig = {
@@ -58,8 +34,5 @@ export const multiInstance: AxiosInstance = axios.create({
 // 인터셉터 등록
 [defaultInstance, multiInstance].forEach((instance) => {
   instance.interceptors.request.use(onRequestFulfilled);
-  instance.interceptors.response.use(
-    (response: AxiosResponse) => response,
-    onResponseRejected
-  );
+  instance.interceptors.response.use(onResponseFulfilled, onResponseRejected);
 });
