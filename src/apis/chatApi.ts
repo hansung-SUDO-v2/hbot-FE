@@ -1,5 +1,4 @@
 import { publicInstance } from "./axios/instance";
-import type { ApiEnvelope } from "@/types/api.type";
 import type { ChatListResponse } from "@/types/chat.type";
 import { API_PATH } from "@/constants/apiPath";
 
@@ -9,12 +8,9 @@ export const getChatListApi = async (
   size: number = 30,
   keyword?: string
 ): Promise<ChatListResponse> => {
-  const res = await publicInstance.get<ApiEnvelope<ChatListResponse>>(
-    API_PATH.CHAT.ROOMS,
-    {
-      params: { page, size, keyword },
-    }
-  );
+  const res = await publicInstance.get<ChatListResponse>(API_PATH.CHAT.ROOMS, {
+    params: { page, size, keyword },
+  });
 
-  return res.data.data;
+  return res.data;
 };
