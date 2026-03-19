@@ -1,6 +1,9 @@
 import { useState } from "react";
 import IconButton from "@/components/button/IconButton";
 import SidebarItem from "./SidebarItem";
+import QueryBoundary from "@/components/boundary/QueryBoundary";
+import { SidebarSkeleton } from "./SidebarSkeleton";
+import ChatListContents from "./ChatListContents";
 
 import IcMenuBasic from "@/assets/icons/layouts/menu-basic-icon.svg?react";
 import IcMenuOpen from "@/assets/icons/layouts/menu-open-icon.svg?react";
@@ -11,24 +14,6 @@ import IcSetting from "@/assets/icons/layouts/settings-icon.svg?react";
 import IcProfile from "@/assets/icons/layouts/profile-icon.svg?react";
 import IcMore from "@/assets/icons/layouts/more-icon.svg?react";
 import IcLess from "@/assets/icons/layouts/less-icon.svg?react";
-
-const chatHistory = [
-  { id: "chat_001", title: "학점은행제 질문 리스트" },
-  {
-    id: "chat_002",
-    title: "UXUI 디자인 트렌드 2026 매우매우매우매우매ㅜ 긴 제목",
-  },
-  { id: "chat_003", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_004", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_005", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_006", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_007", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_008", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_009", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_010", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_011", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_012", title: "리액트 사이드바 컴포넌트 구조" },
-];
 
 interface SidebarProps {
   isMobileOverlay?: boolean;
@@ -43,6 +28,9 @@ const Sidebar = ({
 }: SidebarProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isListVisible, setIsListVisible] = useState<boolean>(true);
+
+  // 검색어 상태
+  const [searchTerm /*setSearchTerm*/] = useState<string>("");
 
   const expanded = isMobileOverlay ? isSidebarOpen : isExpanded;
   const handleToggle = isMobileOverlay
@@ -130,15 +118,9 @@ const Sidebar = ({
               className="flex flex-col gap-2 w-full px-2 animate-fadeIn overflow-y-auto shrink-0"
               style={{ maxHeight: "calc(100vh - 31rem)" }}
             >
-              {chatHistory.map((chat) => (
-                <button
-                  key={chat.id}
-                  type="button"
-                  className="w-full h-7.25 px-3.5 text-left text-h5-r text-list hover:text-list-blue truncate shrink-0 hover:bg-sub-blue rounded-[20px] active:scale-95 transition-colors cursor-pointer"
-                >
-                  {chat.title}
-                </button>
-              ))}
+              <QueryBoundary loadingFallback={<SidebarSkeleton />}>
+                <ChatListContents keyword={searchTerm} />
+              </QueryBoundary>
             </div>
           )}
         </div>

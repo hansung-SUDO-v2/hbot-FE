@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import BG from "@/assets/images/main-bg.webp";
 import { Z_INDEX } from "@/constants/zIndex";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/sidebar/Sidebar";
 
 const RootLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
