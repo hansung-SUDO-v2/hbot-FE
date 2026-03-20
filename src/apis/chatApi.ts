@@ -24,14 +24,13 @@ export const getChatRoomDetail = (
     .then((res) => res.data);
 
 // 채팅방 목록 조회 (GET)
-export const getChatListApi = async (
+export const getChatListApi = (
   page: number = 0,
   size: number = 30,
   keyword?: string
-): Promise<ChatListResponse> => {
-  const res = await publicInstance.get<ChatListResponse>(API_PATH.CHAT.ROOMS, {
-    params: { page, size, keyword },
-  });
-
-  return res.data;
-};
+): Promise<ChatListResponse> =>
+  publicInstance
+    .get<ChatListResponse>(API_PATH.CHAT.ROOMS, {
+      params: { page, size, keyword },
+    })
+    .then((res) => res.data);
