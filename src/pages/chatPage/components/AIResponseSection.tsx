@@ -1,13 +1,16 @@
 import IcBoogie from "@/assets/icons/chat/boogie-icon.svg?react";
 import type { TailQuestion as TailQuestionType } from "@/types/chat";
+import MarkdownContent from "./MarkdownContent";
 import ResponseToolbar from "./ResponseToolbar";
 import TailQuestion from "./TailQuestion";
+import ThinkingText from "./ThinkingText";
 
 interface AIResponseSectionProps {
   content: string;
   isLoading?: boolean;
   tailQuestions: TailQuestionType[];
   tailLoading?: boolean;
+  error?: boolean;
   onTailQuestionClick?: (text: string) => void;
 }
 
@@ -16,6 +19,7 @@ const AIResponseSection = ({
   isLoading = false,
   tailQuestions,
   tailLoading = false,
+  error = false,
   onTailQuestionClick,
 }: AIResponseSectionProps) => {
   return (
@@ -23,12 +27,20 @@ const AIResponseSection = ({
       <IcBoogie className="w-12 h-12 shrink-0 max-mobile:hidden" />
       <div className="flex-1 flex flex-col gap-4">
         <div>
-          <p className="text-r-20 max-mobile:text-mb-r text-header-blue whitespace-pre-line">
-            {isLoading ? "답변 생성중..." : content}
-          </p>
-          <ResponseToolbar className="mt-6" />
+          {isLoading ? (
+            <ThinkingText />
+          ) : error ? (
+            <p className="text-r-20 max-mobile:text-mb-r text-header-blue">
+              답변을 가져오는 데 실패했습니다. 다시 시도해 주세요.
+            </p>
+          ) : (
+            <MarkdownContent className="text-r-20 max-mobile:text-mb-r">
+              {content}
+            </MarkdownContent>
+          )}
+          {!isLoading && !error && <ResponseToolbar className="mt-6" />}
         </div>
-        {tailQuestions.length > 0 && (
+        {!error && tailQuestions.length > 0 && (
           <div className="flex flex-col gap-4">
             {tailQuestions.map((q) => (
               <TailQuestion
