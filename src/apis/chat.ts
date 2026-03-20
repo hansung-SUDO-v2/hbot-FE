@@ -3,18 +3,19 @@ import type {
   SendMessageRequest,
   SendMessageResponse,
 } from "@/types/chat";
+import { API_PATH } from "@/constants/urls";
 import { publicInstance } from "./axios/instance";
 
 export const sendMessage = (
   req: SendMessageRequest
 ): Promise<SendMessageResponse> =>
   publicInstance
-    .post<SendMessageResponse>("/chat", req)
+    .post<SendMessageResponse>(API_PATH.CHAT.SEND, req)
     .then((res) => res.data);
 
 export const getChatRoomDetail = (
   chatRoomId: number
 ): Promise<GetChatRoomDetailResponse> =>
   publicInstance
-    .get<GetChatRoomDetailResponse>(`/chat/rooms/${chatRoomId}`)
+    .get<GetChatRoomDetailResponse>(API_PATH.CHAT.ROOM_DETAIL(chatRoomId))
     .then((res) => res.data);
