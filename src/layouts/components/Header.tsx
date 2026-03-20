@@ -1,13 +1,13 @@
 import { useState } from "react";
-import IconButton from "@/components/button/IconButton";
-import useNavigation from "@/hooks/useNavigation";
-import { URLS } from "@/constants/urls";
+import IcLanguage from "@/assets/icons/layouts/language-icon.svg?react";
+import IcLess from "@/assets/icons/layouts/less2-icon.svg?react";
+import IcMore from "@/assets/icons/layouts/more2-icon.svg?react";
 
 import Logo from "@/assets/images/logo.svg?react";
 import SmallLogo from "@/assets/images/logo-small.svg?react";
-import IcLanguage from "@/assets/icons/layouts/language-icon.svg?react";
-import IcMore from "@/assets/icons/layouts/more2-icon.svg?react";
-import IcLess from "@/assets/icons/layouts/less2-icon.svg?react";
+import IconButton from "@/components/button/IconButton";
+import { URLS } from "@/constants/urls";
+import useNavigation from "@/hooks/useNavigation";
 
 const Header = () => {
   const [isLangOpen, setIsLangOpen] = useState<boolean>(false);

@@ -1,6 +1,6 @@
-import SuggestChip from "./SuggestChip";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useVisualViewport } from "@/hooks/useVisualViewport";
+import SuggestChip from "./SuggestChip";
 
 const SUGGEST_CHIPS = [
   { variant: 1, label: "올해 미디어 디자인 트랙 졸업 요건이 뭐야?" },

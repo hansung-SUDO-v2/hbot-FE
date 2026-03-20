@@ -13,7 +13,15 @@ const QueryBoundary = ({ children, loadingFallback }: QueryBoundaryProps) => {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onReset={reset}>
-      <Suspense fallback={loadingFallback ?? <div className="flex items-center justify-center h-full text-description">로딩 중...</div>}>
+      <Suspense
+        fallback={
+          loadingFallback ?? (
+            <div className="flex items-center justify-center h-full text-description">
+              로딩 중...
+            </div>
+          )
+        }
+      >
         {children}
       </Suspense>
     </ErrorBoundary>
