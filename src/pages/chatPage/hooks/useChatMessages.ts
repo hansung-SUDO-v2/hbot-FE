@@ -1,0 +1,83 @@
+import { useEffect, useRef, useState, useTransition } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import type { AIMessage, ChatMessage } from "@/types/chat";
+import { toUIMessages } from "../utils/toUIMessages";
+import { useSendMessage } from "./useMutation/useSendMessage";
+import { useChatRoomDetail } from "./useSuspenseQuery/useChatRoomDetail";
+import { useInitialMessage } from "./useInitialMessage";
+
+export const useChatMessages = () => {
+  const { chatId } = useParams();
+  const navigate = useNavigate();
+  const [, startTransition] = useTransition();
+
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const idCounterRef = useRef(0);
+  const nextId = () => ++idCounterRef.current;
+  const isMountedRef = useRef(true);
+  useEffect(() => () => { isMountedRef.current = false; }, []);
+
+  const { mutateAsync } = useSendMessage();
+
+  const { data: roomDetail } = useChatRoomDetail(chatId);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: roomDetail 변경 시에만 실행
+  useEffect(() => {
+    if (!roomDetail) return;
+    setMessages(toUIMessages(roomDetail.messages, nextId));
+  }, [roomDetail]);
+
+  const handleSubmit = async (text: string) => {
+    const userMessageId = nextId();
+    const aiMessageId = nextId();
+
+    setIsSubmitting(true);
+    setMessages((prev) => [
+      ...prev,
+      { id: userMessageId, content: text },
+      { id: aiMessageId, content: "", isLoading: true, tailQuestions: [], tailLoading: true },
+    ]);
+
+    try {
+      const data = await mutateAsync({
+        chatRoomId: chatId ? Number(chatId) : null,
+        message: text,
+      });
+
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === aiMessageId
+            ? ({
+                id: aiMessageId,
+                content: data.response,
+                isLoading: false,
+                tailQuestions: data.suggestedQuestions.map((q, i) => ({ id: i, text: q })),
+                tailLoading: false,
+              } satisfies AIMessage)
+            : msg
+        )
+      );
+
+      if (data.newRoom && isMountedRef.current) {
+        startTransition(() => {
+          navigate(`/chat/${data.chatRoomId}`, { replace: true });
+        });
+      }
+    } catch {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === aiMessageId
+            ? ({ ...msg, isLoading: false, tailLoading: false, error: true } as AIMessage)
+            : msg
+        )
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  useInitialMessage(handleSubmit);
+
+  return { messages, isSubmitting, handleSubmit };
+};
