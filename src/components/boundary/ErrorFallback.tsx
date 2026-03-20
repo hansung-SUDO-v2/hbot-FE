@@ -1,12 +1,15 @@
 import type { FallbackProps } from "react-error-boundary";
 
-
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  console.error("에러 원인:", error);
+
   return (
     <div className="flex flex-col items-center justify-center h-full gap-4 text-body">
       <p className="text-h5-b">오류가 발생했습니다</p>
       <p className="text-m-16 text-description">
-        {error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다"}
+        {error instanceof Error
+          ? error.message
+          : "알 수 없는 오류가 발생했습니다"}
       </p>
       <button
         type="button"
