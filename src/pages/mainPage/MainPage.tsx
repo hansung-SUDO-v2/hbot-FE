@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import { ChatInput } from "@/components/input/ChatInput";
 import { ACTION_BUTTONS } from "@/constants/actionButtons";
+import useNavigation from "@/hooks/useNavigation";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useVisualViewport } from "@/hooks/useVisualViewport";
 import ActionButton from "./components/ActionButton";
@@ -8,12 +8,12 @@ import HomePageButton from "./components/HomePageButton";
 import SuggestChipGroup from "./components/SuggestChipGroup";
 
 const MainPage = () => {
-  const navigate = useNavigate();
+  const { goTo } = useNavigation();
   const isMobile = useIsMobile();
   const { viewportHeight, offsetTop } = useVisualViewport(isMobile);
 
   const handleSubmit = (text: string) => {
-    navigate("/chat", { state: { initialMessage: text } });
+    goTo("/chat", { state: { initialMessage: text } });
   };
 
   return (

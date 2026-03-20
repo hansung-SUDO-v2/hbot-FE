@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState, useTransition } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import type { AIMessage, ChatMessage } from "@/types/chat";
+import useNavigation from "@/hooks/useNavigation";
 import { toUIMessages } from "../utils/toUIMessages";
 import { useInitialMessage } from "./useInitialMessage";
 import { useSendMessage } from "./useMutation/useSendMessage";
-import { useChatRoomDetail } from "./useSuspenseQuery/useChatRoomDetail";
+import { useChatRoomDetail } from "./useQuery/useChatRoomDetail";
 
 export const useChatMessages = () => {
   const { chatId } = useParams();
-  const navigate = useNavigate();
+  const { goTo } = useNavigation();
   const { pathname } = useLocation();
   const [, startTransition] = useTransition();
 
@@ -77,7 +78,7 @@ export const useChatMessages = () => {
 
       if (data.newRoom) {
         startTransition(() => {
-          navigate(`/chat/${data.chatRoomId}`, { replace: true });
+          goTo(`/chat/${data.chatRoomId}`, { replace: true });
         });
       }
     } catch {
