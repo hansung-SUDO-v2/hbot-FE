@@ -14,6 +14,7 @@ import IcMore from "@/assets/icons/layouts/more-icon.svg?react";
 import IcLess from "@/assets/icons/layouts/less-icon.svg?react";
 import IcAdd from "@/assets/icons/layouts/add-icon.svg?react";
 import IcHistory from "@/assets/icons/layouts/history-icon.svg?react";
+import useNavigation from "@/hooks/useNavigation";
 
 interface SidebarProps {
   isMobileOverlay?: boolean;
@@ -26,6 +27,7 @@ const Sidebar = ({
   isSidebarOpen = false,
   onToggle,
 }: SidebarProps) => {
+  const { goTo } = useNavigation();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isListVisible, setIsListVisible] = useState<boolean>(true);
 
@@ -89,7 +91,9 @@ const Sidebar = ({
             icon={IcAdd}
             label="새 채팅"
             isExpanded={expanded}
-            onClick={() => {}}
+            onClick={() => {
+              goTo("/");
+            }}
           />
           <SidebarItem
             icon={IcSearch}
