@@ -15,8 +15,8 @@ export const toUIMessages = (
           id: nextId(),
           content: msg.content,
           isLoading: false,
-          tailQuestions: (msg.suggestedQuestions ?? []).map((q, i) => ({
-            id: i,
+          tailQuestions: (msg.suggestedQuestions ?? []).map((q) => ({
+            id: q.id,
             text: q.question,
           })),
           tailLoading: false,
