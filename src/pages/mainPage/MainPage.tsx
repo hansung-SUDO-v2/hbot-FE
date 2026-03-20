@@ -1,14 +1,20 @@
 import { ChatInput } from "@/components/input/ChatInput";
+import { ACTION_BUTTONS } from "@/constants/actionButtons";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import useNavigation from "@/hooks/useNavigation";
+import { useVisualViewport } from "@/hooks/useVisualViewport";
 import ActionButton from "./components/ActionButton";
 import HomePageButton from "./components/HomePageButton";
 import SuggestChipGroup from "./components/SuggestChipGroup";
-import { ACTION_BUTTONS } from "@/constants/actionButtons";
-import { useIsMobile } from "@/hooks/useIsMobile";
-import { useVisualViewport } from "@/hooks/useVisualViewport";
 
 const MainPage = () => {
+  const { goTo } = useNavigation();
   const isMobile = useIsMobile();
   const { viewportHeight, offsetTop } = useVisualViewport(isMobile);
+
+  const handleSubmit = (text: string) => {
+    goTo("/chat", { state: { initialMessage: text } });
+  };
 
   return (
     <div
@@ -56,7 +62,7 @@ const MainPage = () => {
           isMobile ? "pb-4" : "pb-10"
         }`}
       >
-        <ChatInput />
+        <ChatInput onSubmit={handleSubmit} />
         {!isMobile && (
           <>
             <section className="flex justify-center gap-4 max-laptop:gap-3.25 pt-10 max-laptop:pt-8">

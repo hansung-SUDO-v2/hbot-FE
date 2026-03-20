@@ -1,56 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { ChatInput } from "@/components/input/ChatInput";
-import { mockChatMessages } from "@/mocks/mockChat";
-import type { AIMessage, ChatMessage } from "@/types/chat";
 import AIResponseSection from "./components/AIResponseSection";
 import UserMessage from "./components/UserMessage";
+import { useChatMessages } from "./hooks/useChatMessages";
 
 const ChatPage = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>(mockChatMessages);
+  const { messages, isSubmitting, handleSubmit } = useChatMessages();
   const bottomRef = useRef<HTMLDivElement>(null);
-  const idCounterRef = useRef(0);
 
-  const nextId = () => ++idCounterRef.current;
-
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on new message or response complete
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  const handleSubmit = (text: string) => {
-    const userMessageId = nextId();
-    const aiMessageId = nextId();
-
-    const loadingAIMessage: AIMessage = {
-      id: aiMessageId,
-      content: "",
-      isLoading: true,
-      tailQuestions: [],
-      tailLoading: true,
-    };
-
-    setMessages((prev) => [
-      ...prev,
-      { id: userMessageId, content: text },
-      loadingAIMessage,
-    ]);
-
-    // TODO: 실제 API 호출로 교체
-    setTimeout(() => {
-      setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === aiMessageId
-            ? ({
-                id: aiMessageId,
-                content: `"${text}"에 대한 답변입니다.`,
-                isLoading: false,
-                tailQuestions: [],
-                tailLoading: false,
-              } satisfies AIMessage)
-            : msg
-        )
-      );
-    }, 2000);
-  };
+  }, [messages.length, isSubmitting]);
 
   return (
     <div className="flex flex-col h-full">
@@ -65,6 +26,7 @@ const ChatPage = () => {
                 isLoading={msg.isLoading}
                 tailQuestions={msg.tailQuestions}
                 tailLoading={msg.tailLoading}
+                error={msg.error}
                 onTailQuestionClick={handleSubmit}
               />
             ) : (
@@ -79,13 +41,7 @@ const ChatPage = () => {
       <div className="shrink-0 relative chat-pl chat-pr pb-7">
         <div className="absolute left-0 right-0 top-0 h-12 -translate-y-full bg-linear-to-b from-transparent to-bg pointer-events-none" />
         <div className="ml-16 max-mobile:ml-0">
-          <ChatInput
-            onSubmit={handleSubmit}
-            isLoading={messages.some(
-              //api 연동 시 isLoading 연결
-              (msg) => "isLoading" in msg && msg.isLoading
-            )}
-          />
+          <ChatInput onSubmit={handleSubmit} isLoading={isSubmitting} />
         </div>
       </div>
     </div>

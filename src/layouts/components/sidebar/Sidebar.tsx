@@ -7,9 +7,9 @@ import ChatListContents from "./ChatListContents";
 
 import IcMenuBasic from "@/assets/icons/layouts/menu-basic-icon.svg?react";
 import IcMenuOpen from "@/assets/icons/layouts/menu-open-icon.svg?react";
-import IcAdd from "@/assets/icons/layouts/add-icon.svg?react";
+import IcMore from "@/assets/icons/layouts/more-icon.svg?react";
+import IcProfile from "@/assets/icons/layouts/profile-icon.svg?react";
 import IcSearch from "@/assets/icons/layouts/search-icon.svg?react";
-import IcHistory from "@/assets/icons/layouts/history-icon.svg?react";
 import IcSetting from "@/assets/icons/layouts/settings-icon.svg?react";
 import IcProfile from "@/assets/icons/layouts/profile-icon.svg?react";
 import IcMore from "@/assets/icons/layouts/more-icon.svg?react";

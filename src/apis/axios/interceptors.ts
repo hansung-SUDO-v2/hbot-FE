@@ -1,7 +1,7 @@
 import type {
-  InternalAxiosRequestConfig,
-  AxiosResponse,
   AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
 } from "axios";
 
 // A. 요청 핸들러
