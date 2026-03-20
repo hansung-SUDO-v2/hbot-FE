@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useTransition } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import type { AIMessage, ChatMessage } from "@/types/chat";
 import { toUIMessages } from "../utils/toUIMessages";
 import { useInitialMessage } from "./useInitialMessage";
@@ -9,19 +9,18 @@ import { useChatRoomDetail } from "./useSuspenseQuery/useChatRoomDetail";
 export const useChatMessages = () => {
   const { chatId } = useParams();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [, startTransition] = useTransition();
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const idCounterRef = useRef(0);
   const nextId = () => ++idCounterRef.current;
-  const isMountedRef = useRef(true);
-  useEffect(
-    () => () => {
-      isMountedRef.current = false;
-    },
-    []
-  );
+  const currentPathRef = useRef(pathname);
+
+  useEffect(() => {
+    currentPathRef.current = pathname;
+  }, [pathname]);
 
   const { mutateAsync } = useSendMessage();
 
@@ -36,6 +35,7 @@ export const useChatMessages = () => {
   const handleSubmit = async (text: string) => {
     const userMessageId = nextId();
     const aiMessageId = nextId();
+    const entryPath = currentPathRef.current;
 
     setIsSubmitting(true);
     setMessages((prev) => [
@@ -56,6 +56,8 @@ export const useChatMessages = () => {
         message: text,
       });
 
+      if (currentPathRef.current !== entryPath) return;
+
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === aiMessageId
@@ -73,12 +75,13 @@ export const useChatMessages = () => {
         )
       );
 
-      if (data.newRoom && isMountedRef.current) {
+      if (data.newRoom) {
         startTransition(() => {
           navigate(`/chat/${data.chatRoomId}`, { replace: true });
         });
       }
     } catch {
+      if (currentPathRef.current !== entryPath) return;
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === aiMessageId
