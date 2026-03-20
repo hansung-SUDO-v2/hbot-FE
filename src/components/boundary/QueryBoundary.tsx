@@ -2,6 +2,7 @@ import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { type ReactNode, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./ErrorFallback";
+import Spinner from "../loading/Spinner";
 
 interface QueryBoundaryProps {
   children: ReactNode;
@@ -13,17 +14,7 @@ const QueryBoundary = ({ children, loadingFallback }: QueryBoundaryProps) => {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onReset={reset}>
-      <Suspense
-        fallback={
-          loadingFallback ?? (
-            <div className="flex items-center justify-center h-full text-description">
-              로딩 중...
-            </div>
-          )
-        }
-      >
-        {children}
-      </Suspense>
+      <Suspense fallback={loadingFallback ?? <Spinner />}>{children}</Suspense>
     </ErrorBoundary>
   );
 };
