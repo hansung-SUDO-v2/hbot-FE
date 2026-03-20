@@ -16,21 +16,17 @@
   }
 }
 /* 스크롤바 */
-  ::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    cursor: pointer;
-    @apply bg-scrollbar-blue rounded-full;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-sub-blue;
-  }
-
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  @apply bg-scrollbar-blue rounded-full;
+}
 
 @utility chat-pl {
   padding-left: max(2.5rem, calc(50% - 29.34rem));
