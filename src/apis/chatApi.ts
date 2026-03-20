@@ -1,6 +1,6 @@
 import { publicInstance } from "./axios/instance";
 import type { ChatListResponse } from "@/types/chat.type";
-import { API_PATH } from "@/constants/apiPath";
+import { API_PATH } from "@/constants/urls";
 
 // 채팅방 목록 조회 (GET)
 export const getChatListApi = async (
