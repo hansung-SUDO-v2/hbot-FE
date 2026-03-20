@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getChatListApi } from "@/apis/chatApi";
-import type { ChatListResponse } from "@/types/chat.type";
 import { CHAT_QUERY_KEYS } from "@/constants/queryKeys";
+import type { ChatListResponse } from "@/types/chat.type";
 
 export const useGetChatList = (page = 0, size = 30, keyword?: string) => {
   return useSuspenseQuery<ChatListResponse>({

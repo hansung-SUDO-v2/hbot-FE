@@ -1,11 +1,11 @@
-import { publicInstance } from "./axios/instance";
-import type { ChatListResponse } from "@/types/chat.type";
 import { API_PATH } from "@/constants/urls";
 import type {
   GetChatRoomDetailResponse,
   SendMessageRequest,
   SendMessageResponse,
 } from "@/types/chat";
+import type { ChatListResponse } from "@/types/chat.type";
+import { publicInstance } from "./axios/instance";
 
 // 메시지 전송 (POST)
 export const sendMessage = (

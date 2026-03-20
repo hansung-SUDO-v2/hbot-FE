@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useGetChatList } from "../../hooks/useQuery/useGetChatList";
 import useNavigation from "@/hooks/useNavigation";
+import { useGetChatList } from "../../hooks/useQuery/useGetChatList";
 
 interface ChatListContentsProps {
   keyword: string;

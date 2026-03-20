@@ -1,8 +1,8 @@
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { type ReactNode, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "./ErrorFallback";
 import Spinner from "../loading/Spinner";
+import ErrorFallback from "./ErrorFallback";
 
 interface QueryBoundaryProps {
   children: ReactNode;
