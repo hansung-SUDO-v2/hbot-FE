@@ -1,5 +1,5 @@
 import IcBoogie from "@/assets/icons/chat/boogie-icon.svg?react";
-import type { TailQuestion as TailQuestionType } from "@/types/chat";
+import type { TailQuestion as TailQuestionType } from "@/types/chat.type";
 import MarkdownContent from "./MarkdownContent";
 import ResponseToolbar from "./ResponseToolbar";
 import TailQuestion from "./TailQuestion";

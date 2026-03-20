@@ -8,26 +8,12 @@ import IcMore from "@/assets/icons/layouts/more-icon.svg?react";
 import IcProfile from "@/assets/icons/layouts/profile-icon.svg?react";
 import IcSearch from "@/assets/icons/layouts/search-icon.svg?react";
 import IcSetting from "@/assets/icons/layouts/settings-icon.svg?react";
+import QueryBoundary from "@/components/boundary/QueryBoundary";
 import IconButton from "@/components/button/IconButton";
+import useNavigation from "@/hooks/useNavigation";
+import ChatListContents from "./ChatListContents";
 import SidebarItem from "./SidebarItem";
-
-const chatHistory = [
-  { id: "chat_001", title: "학점은행제 질문 리스트" },
-  {
-    id: "chat_002",
-    title: "UXUI 디자인 트렌드 2026 매우매우매우매우매ㅜ 긴 제목",
-  },
-  { id: "chat_003", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_004", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_005", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_006", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_007", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_008", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_009", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_010", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_011", title: "리액트 사이드바 컴포넌트 구조" },
-  { id: "chat_012", title: "리액트 사이드바 컴포넌트 구조" },
-];
+import { SidebarSkeleton } from "./SidebarSkeleton";
 
 interface SidebarProps {
   isMobileOverlay?: boolean;
@@ -40,8 +26,12 @@ const Sidebar = ({
   isSidebarOpen = false,
   onToggle,
 }: SidebarProps) => {
+  const { goTo } = useNavigation();
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isListVisible, setIsListVisible] = useState<boolean>(true);
+
+  // 검색어 상태
+  const [searchTerm /*setSearchTerm*/] = useState<string>("");
 
   const expanded = isMobileOverlay ? isSidebarOpen : isExpanded;
   const handleToggle = isMobileOverlay
@@ -100,7 +90,9 @@ const Sidebar = ({
             icon={IcAdd}
             label="새 채팅"
             isExpanded={expanded}
-            onClick={() => {}}
+            onClick={() => {
+              goTo("/");
+            }}
           />
           <SidebarItem
             icon={IcSearch}
@@ -129,15 +121,9 @@ const Sidebar = ({
               className="flex flex-col gap-2 w-full px-2 animate-fadeIn overflow-y-auto shrink-0"
               style={{ maxHeight: "calc(100vh - 31rem)" }}
             >
-              {chatHistory.map((chat) => (
-                <button
-                  key={chat.id}
-                  type="button"
-                  className="w-full h-7.25 px-3.5 text-left text-h5-r text-list hover:text-list-blue truncate shrink-0 hover:bg-sub-blue rounded-[20px] active:scale-95 transition-colors cursor-pointer"
-                >
-                  {chat.title}
-                </button>
-              ))}
+              <QueryBoundary loadingFallback={<SidebarSkeleton />}>
+                <ChatListContents keyword={searchTerm} />
+              </QueryBoundary>
             </div>
           )}
         </div>
@@ -156,11 +142,9 @@ const Sidebar = ({
           }`}
           onClick={handleSettingClick}
         >
-          <IconButton icon={IcSetting} alt="setting" size={26} />
+          <IconButton as="div" icon={IcSetting} alt="setting" size={26} />
           {expanded && (
-            <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
-              <span className="text-h5-r text-chat-text shrink-0">설정</span>
-            </div>
+            <span className="text-h5-r text-chat-text shrink-0">설정</span>
           )}
         </button>
 
@@ -171,7 +155,7 @@ const Sidebar = ({
           }`}
           onClick={handleProfileClick}
         >
-          <IconButton icon={IcProfile} alt="profile" />
+          <IconButton as="div" icon={IcProfile} alt="profile" />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-m text-sub shrink-0">홍길동</span>

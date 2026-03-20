@@ -11,7 +11,11 @@ const SUGGEST_CHIPS = [
   { variant: 6, label: "셔틀버스 시간표 보여줘" },
 ] as const;
 
-const SuggestChipGroup = () => {
+interface SuggestChipGroupProps {
+  onChipClick: (label: string) => void;
+}
+
+const SuggestChipGroup = ({ onChipClick }: SuggestChipGroupProps) => {
   const isMobile = useIsMobile();
   const { isKeyboardOpen } = useVisualViewport(isMobile);
 
@@ -30,7 +34,11 @@ const SuggestChipGroup = () => {
                   key={`kb-${variant}-${index < SUGGEST_CHIPS.length ? "orig" : "clone"}`}
                   className="shrink-0"
                 >
-                  <SuggestChip variant={variant} label={label} />
+                  <SuggestChip
+                    variant={variant}
+                    label={label}
+                    onClick={() => onChipClick(label)}
+                  />
                 </div>
               )
             )}
@@ -44,7 +52,11 @@ const SuggestChipGroup = () => {
                   key={`top-${variant}-${index < topChips.length ? "orig" : "clone"}`}
                   className="shrink-0"
                 >
-                  <SuggestChip variant={variant} label={label} />
+                  <SuggestChip
+                    variant={variant}
+                    label={label}
+                    onClick={() => onChipClick(label)}
+                  />
                 </div>
               ))}
             </div>
@@ -55,7 +67,11 @@ const SuggestChipGroup = () => {
                     key={`bot-${variant}-${index < bottomChips.length ? "orig" : "clone"}`}
                     className="shrink-0"
                   >
-                    <SuggestChip variant={variant} label={label} />
+                    <SuggestChip
+                      variant={variant}
+                      label={label}
+                      onClick={() => onChipClick(label)}
+                    />
                   </div>
                 )
               )}
@@ -69,7 +85,12 @@ const SuggestChipGroup = () => {
   return (
     <section className="flex gap-6 max-laptop:gap-4 max-tablet:gap-3">
       {topChips.map(({ variant, label }) => (
-        <SuggestChip key={variant} variant={variant} label={label} />
+        <SuggestChip
+          key={variant}
+          variant={variant}
+          label={label}
+          onClick={() => onChipClick(label)}
+        />
       ))}
     </section>
   );

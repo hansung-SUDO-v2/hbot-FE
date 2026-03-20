@@ -2,7 +2,7 @@ import type {
   AIMessage,
   ChatMessage,
   ChatRoomMessageEntity,
-} from "@/types/chat";
+} from "@/types/chat.type";
 
 export const toUIMessages = (
   messages: ChatRoomMessageEntity[],

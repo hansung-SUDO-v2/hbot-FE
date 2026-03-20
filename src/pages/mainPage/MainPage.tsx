@@ -54,7 +54,7 @@ const MainPage = () => {
           isMobile ? "flex-1 min-h-0 overflow-y-auto no-scrollbar py-2" : ""
         }`}
       >
-        <SuggestChipGroup />
+        <SuggestChipGroup onChipClick={handleSubmit} />
       </div>
 
       <div

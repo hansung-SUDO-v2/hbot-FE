@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import type React from "react";
 
-type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type IconButtonProps = React.HTMLAttributes<HTMLElement> & {
+  as?: "button" | "div" | "span"; // 렌더링할 태그
   alt: string;
   size?: number;
   className?: string;
@@ -11,6 +12,7 @@ type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   );
 
 const IconButton = ({
+  as: Component = "button",
   src,
   icon: Icon,
   alt,
@@ -19,8 +21,9 @@ const IconButton = ({
   ...props
 }: IconButtonProps) => {
   return (
-    <button
-      type="button"
+    <Component
+      // Component가 button일 때만 type="button" 속성 부여
+      {...(Component === "button" ? { type: "button" } : {})}
       className={clsx(
         "flex items-center justify-center cursor-pointer active:scale-[0.94] transition-transform duration-75 ease-out shrink-0",
         className
@@ -38,7 +41,7 @@ const IconButton = ({
           className="object-contain"
         />
       )}
-    </button>
+    </Component>
   );
 };
 
