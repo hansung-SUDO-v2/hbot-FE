@@ -143,11 +143,9 @@ const Sidebar = ({
           }`}
           onClick={handleSettingClick}
         >
-          <IconButton icon={IcSetting} alt="setting" size={26} />
+          <IconButton as="div" icon={IcSetting} alt="setting" size={26} />
           {expanded && (
-            <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
-              <span className="text-h5-r text-chat-text shrink-0">설정</span>
-            </div>
+            <span className="text-h5-r text-chat-text shrink-0">설정</span>
           )}
         </button>
 
@@ -158,7 +156,7 @@ const Sidebar = ({
           }`}
           onClick={handleProfileClick}
         >
-          <IconButton icon={IcProfile} alt="profile" />
+          <IconButton as="div" icon={IcProfile} alt="profile" />
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-m text-sub shrink-0">홍길동</span>

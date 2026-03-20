@@ -42,6 +42,7 @@ const Header = () => {
           onClick={() => setIsLangOpen(!isLangOpen)}
         >
           <IconButton
+            as="div"
             icon={IcLanguage}
             alt="언어"
             className="pointer-events-none max-tablet:w-5 max-tablet:h-5 max-sm-tablet:w-4 max-sm-tablet:h-4"
@@ -50,6 +51,7 @@ const Header = () => {
             Language
           </span>
           <IconButton
+            as="div"
             icon={isLangOpen ? IcLess : IcMore}
             alt="언어 토글"
             className="pointer-events-none max-tablet:w-5 max-tablet:h-5 max-sm-tablet:w-4 max-sm-tablet:h-4"
