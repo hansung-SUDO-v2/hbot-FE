@@ -3,7 +3,7 @@ import type {
   GetChatRoomDetailResponse,
   SendMessageRequest,
   SendMessageResponse,
-} from "@/types/chat";
+} from "@/types/chat.type";
 import type { ChatListResponse } from "@/types/chat.type";
 import { publicInstance } from "./axios/instance";
 

@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getChatRoomDetail } from "@/apis/chatApi";
 import { CHAT_QUERY_KEYS } from "@/constants/queryKeys";
-import type { GetChatRoomDetailResponse } from "@/types/chat";
+import type { GetChatRoomDetailResponse } from "@/types/chat.type";
 
 export const useChatRoomDetail = (chatId: string | undefined) =>
   useSuspenseQuery<GetChatRoomDetailResponse | null>({

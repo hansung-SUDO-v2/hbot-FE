@@ -1,7 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { sendMessage } from "@/apis/chatApi";
 import { CHAT_QUERY_KEYS } from "@/constants/queryKeys";
-import type { SendMessageRequest, SendMessageResponse } from "@/types/chat";
+import type {
+  SendMessageRequest,
+  SendMessageResponse,
+} from "@/types/chat.type";
 
 export const useSendMessage = () => {
   const queryClient = useQueryClient(); // 인스턴스 가져오기
