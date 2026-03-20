@@ -1,8 +1,8 @@
 import type React from "react";
-import IcSchool from "@/assets/icons/main/school-icon.svg?react";
+import IcCall from "@/assets/icons/main/call-icon.svg?react";
 import IcMail from "@/assets/icons/main/mail-icon.svg?react";
 import IcMemo from "@/assets/icons/main/memo-icon.svg?react";
-import IcCall from "@/assets/icons/main/call-icon.svg?react";
+import IcSchool from "@/assets/icons/main/school-icon.svg?react";
 import IcShare from "@/assets/icons/main/share-icon.svg?react";
 
 export type ActionButtonVariant = "school" | "mail" | "memo" | "call" | "share";

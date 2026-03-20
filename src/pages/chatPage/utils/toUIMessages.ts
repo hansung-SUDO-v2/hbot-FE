@@ -1,4 +1,8 @@
-import type { AIMessage, ChatMessage, ChatRoomMessageEntity } from "@/types/chat";
+import type {
+  AIMessage,
+  ChatMessage,
+  ChatRoomMessageEntity,
+} from "@/types/chat";
 
 export const toUIMessages = (
   messages: ChatRoomMessageEntity[],

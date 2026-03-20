@@ -18,10 +18,7 @@ interface MarkdownContentProps {
 
 const MarkdownContent = ({ children, className }: MarkdownContentProps) => {
   return (
-    <div
-      className={`prose max-w-none ${className ?? ""}`}
-      style={PROSE_STYLE}
-    >
+    <div className={`prose max-w-none ${className ?? ""}`} style={PROSE_STYLE}>
       <Markdown>{children}</Markdown>
     </div>
   );

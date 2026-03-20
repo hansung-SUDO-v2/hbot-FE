@@ -2,9 +2,9 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { AIMessage, ChatMessage } from "@/types/chat";
 import { toUIMessages } from "../utils/toUIMessages";
+import { useInitialMessage } from "./useInitialMessage";
 import { useSendMessage } from "./useMutation/useSendMessage";
 import { useChatRoomDetail } from "./useSuspenseQuery/useChatRoomDetail";
-import { useInitialMessage } from "./useInitialMessage";
 
 export const useChatMessages = () => {
   const { chatId } = useParams();
@@ -16,7 +16,12 @@ export const useChatMessages = () => {
   const idCounterRef = useRef(0);
   const nextId = () => ++idCounterRef.current;
   const isMountedRef = useRef(true);
-  useEffect(() => () => { isMountedRef.current = false; }, []);
+  useEffect(
+    () => () => {
+      isMountedRef.current = false;
+    },
+    []
+  );
 
   const { mutateAsync } = useSendMessage();
 
@@ -36,7 +41,13 @@ export const useChatMessages = () => {
     setMessages((prev) => [
       ...prev,
       { id: userMessageId, content: text },
-      { id: aiMessageId, content: "", isLoading: true, tailQuestions: [], tailLoading: true },
+      {
+        id: aiMessageId,
+        content: "",
+        isLoading: true,
+        tailQuestions: [],
+        tailLoading: true,
+      },
     ]);
 
     try {
@@ -52,7 +63,10 @@ export const useChatMessages = () => {
                 id: aiMessageId,
                 content: data.response,
                 isLoading: false,
-                tailQuestions: data.suggestedQuestions.map((q, i) => ({ id: i, text: q })),
+                tailQuestions: data.suggestedQuestions.map((q, i) => ({
+                  id: i,
+                  text: q,
+                })),
                 tailLoading: false,
               } satisfies AIMessage)
             : msg
@@ -68,7 +82,12 @@ export const useChatMessages = () => {
       setMessages((prev) =>
         prev.map((msg) =>
           msg.id === aiMessageId
-            ? ({ ...msg, isLoading: false, tailLoading: false, error: true } as AIMessage)
+            ? ({
+                ...msg,
+                isLoading: false,
+                tailLoading: false,
+                error: true,
+              } as AIMessage)
             : msg
         )
       );

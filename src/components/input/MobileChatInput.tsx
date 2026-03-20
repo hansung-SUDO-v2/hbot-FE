@@ -2,8 +2,8 @@ import clsx from "clsx";
 import { useState } from "react";
 import IcAdd from "@/assets/icons/chat/add-icon.svg?react";
 import IcArrow from "@/assets/icons/chat/arrow-triangle-turn-up-right-circle-fill-icon.svg?react";
-import { Z_INDEX } from "@/constants/zIndex";
 import { ChatBottomSheet } from "@/components/bottomSheet/ChatBottomSheet";
+import { Z_INDEX } from "@/constants/zIndex";
 import { useChatInput } from "./useChatInput";
 
 interface MobileChatInputProps {
