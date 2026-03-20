@@ -1,7 +1,7 @@
 import { ChatInput } from "@/components/input/ChatInput";
 import { ACTION_BUTTONS } from "@/constants/actionButtons";
-import useNavigation from "@/hooks/useNavigation";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import useNavigation from "@/hooks/useNavigation";
 import { useVisualViewport } from "@/hooks/useVisualViewport";
 import ActionButton from "./components/ActionButton";
 import HomePageButton from "./components/HomePageButton";

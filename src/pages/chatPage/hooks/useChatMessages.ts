@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import type { AIMessage, ChatMessage } from "@/types/chat";
 import useNavigation from "@/hooks/useNavigation";
+import type { AIMessage, ChatMessage } from "@/types/chat";
 import { toUIMessages } from "../utils/toUIMessages";
 import { useInitialMessage } from "./useInitialMessage";
 import { useSendMessage } from "./useMutation/useSendMessage";

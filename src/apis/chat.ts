@@ -1,9 +1,9 @@
+import { API_PATH } from "@/constants/urls";
 import type {
   GetChatRoomDetailResponse,
   SendMessageRequest,
   SendMessageResponse,
 } from "@/types/chat";
-import { API_PATH } from "@/constants/urls";
 import { publicInstance } from "./axios/instance";
 
 export const sendMessage = (
