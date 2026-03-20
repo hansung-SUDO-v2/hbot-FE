@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { sendMessage } from "@/apis/chat";
+import { sendMessage } from "@/apis/chatApi";
 import type { SendMessageRequest, SendMessageResponse } from "@/types/chat";
 import { CHAT_QUERY_KEYS } from "@/constants/queryKeys";
 
