@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import IconButton from "@/components/button/IconButton";
 import { TOOLBAR_BUTTONS } from "@/constants/chat";
+import { useToolbarActions } from "@/pages/chatPage/hooks/useToolbarActions";
 
 interface ResponseToolbarProps {
   className?: string;
@@ -8,19 +9,17 @@ interface ResponseToolbarProps {
 }
 
 const ResponseToolbar = ({ className, content }: ResponseToolbarProps) => {
-  const handleCopy = () => {
-    navigator.clipboard.writeText(content);
-  };
+  const { handleCopy } = useToolbarActions(content);
 
   return (
     <div className={clsx("flex items-center gap-3", className)}>
-      {TOOLBAR_BUTTONS.map(({ icon, alt }) => (
+      {TOOLBAR_BUTTONS.map(({ action, icon, alt }) => (
         <IconButton
-          key={alt}
+          key={action}
           icon={icon}
           alt={alt}
           size={20}
-          {...(alt === "복사" && { onClick: handleCopy })}
+          {...(action === "copy" && { onClick: handleCopy })}
         />
       ))}
     </div>
