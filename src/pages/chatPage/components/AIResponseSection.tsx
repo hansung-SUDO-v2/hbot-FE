@@ -38,7 +38,9 @@ const AIResponseSection = ({
               {content}
             </MarkdownContent>
           )}
-          {!isLoading && !error && <ResponseToolbar className="mt-6" />}
+          {!isLoading && !error && (
+            <ResponseToolbar className="mt-6" content={content} />
+          )}
         </div>
         {!error && tailQuestions.length > 0 && (
           <div className="flex flex-col gap-4">
