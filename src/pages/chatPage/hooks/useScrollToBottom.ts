@@ -20,6 +20,7 @@ export const useScrollToBottom = () => {
     setShowScrollBtn(isOverflowing && !isAtBottom);
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: checkShouldShow only references stable refs and state setter
   useEffect(() => {
     const content = contentRef.current;
     const container = scrollContainerRef.current;
