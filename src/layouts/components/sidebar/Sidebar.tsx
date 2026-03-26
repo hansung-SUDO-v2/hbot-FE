@@ -34,11 +34,26 @@ const Sidebar = ({
   const [searchTerm /*setSearchTerm*/] = useState<string>("");
 
   const expanded = isMobileOverlay ? isSidebarOpen : isExpanded;
+
+  const closeSidebar = () => {
+    if (isMobileOverlay) {
+      if (onToggle && isSidebarOpen) onToggle();
+    } else {
+      setIsExpanded(false);
+    }
+  };
+
   const handleToggle = isMobileOverlay
     ? onToggle
     : () => setIsExpanded(!isExpanded);
 
   const isMobileOnly = isMobileOverlay;
+
+  // 새 채팅 버튼 핸들러
+  const handleNewChat = () => {
+    goTo("/");
+    closeSidebar();
+  };
 
   // 기록 버튼 핸들러
   const handleHistoryClick = () => {
@@ -90,9 +105,7 @@ const Sidebar = ({
             icon={IcAdd}
             label="새 채팅"
             isExpanded={expanded}
-            onClick={() => {
-              goTo("/");
-            }}
+            onClick={handleNewChat}
           />
           <SidebarItem
             icon={IcSearch}
