@@ -87,7 +87,7 @@ const Sidebar = ({
       }
     >
       {/* 상단 아이콘 4개 */}
-      <div className="flex flex-col gap-14.5 w-full items-start">
+      <div className="flex flex-col gap-12 w-full items-start">
         {/* 메뉴 버튼 */}
         <IconButton
           icon={expanded ? IcMenuOpen : IcMenuBasic}
