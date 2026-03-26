@@ -151,27 +151,33 @@ const Sidebar = ({
           isMobileOnly && !expanded ? "max-mobile:hidden" : ""
         }`}
       >
+        {/* 설정 버튼 */}
         <button
           type="button"
-          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer group ${
-            expanded ? "px-3 gap-2" : "px-0"
+          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer group overflow-hidden ${
+            expanded ? "px-3 gap-2" : "px-0 justify-center"
           }`}
           onClick={handleSettingClick}
         >
-          <IconButton as="div" icon={IcSetting} alt="setting" size={26} />
+          <div className="flex-none flex items-center justify-center w-6.5 h-6.5">
+            <IconButton as="div" icon={IcSetting} alt="setting" size={26} />
+          </div>
           {expanded && (
-            <span className="text-h5-r text-chat-text shrink-0">설정</span>
+            <span className="text-h5-r text-chat-text truncate">설정</span>
           )}
         </button>
 
+        {/* 프로필 버튼 */}
         <button
           type="button"
-          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer ${
-            expanded ? "px-3 gap-2" : "px-0"
+          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer overflow-hidden ${
+            expanded ? "px-3 gap-2" : "px-0 justify-center"
           }`}
           onClick={handleProfileClick}
         >
-          <IconButton as="div" icon={IcProfile} alt="profile" />
+          <div className="flex-none flex items-center justify-center w-6.5 h-6.5">
+            <IconButton as="div" icon={IcProfile} alt="profile" />
+          </div>
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-m text-sub shrink-0">홍길동</span>
