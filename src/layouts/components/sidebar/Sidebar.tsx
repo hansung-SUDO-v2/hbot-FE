@@ -135,7 +135,10 @@ const Sidebar = ({
               style={{ maxHeight: "calc(100vh - 31rem)" }}
             >
               <QueryBoundary loadingFallback={<SidebarSkeleton />}>
-                <ChatListContents keyword={searchTerm} />
+                <ChatListContents
+                  keyword={searchTerm}
+                  onItemClick={closeSidebar}
+                />
               </QueryBoundary>
             </div>
           )}
