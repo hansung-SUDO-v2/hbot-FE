@@ -27,7 +27,7 @@ const SuggestChipGroup = ({ onChipClick }: SuggestChipGroupProps) => {
   const bottomChips = SUGGEST_CHIPS.slice(3, 6);
 
   const renderMarqueeRow = (
-    chips: (typeof SUGGEST_CHIPS)[number][],
+    chips: readonly (typeof SUGGEST_CHIPS)[number][],
     rowId: string
   ) => (
     <div className="relative flex w-full overflow-hidden py-1">
@@ -56,7 +56,7 @@ const SuggestChipGroup = ({ onChipClick }: SuggestChipGroupProps) => {
         {isKeyboardOpen ? (
           /* 키보드 활성 시: 6개 1줄 마키 애니메이션 */
           <div key="kb-container" className="animate-fadeIn">
-            {renderMarqueeRow([...SUGGEST_CHIPS], "kb")}
+            {renderMarqueeRow(SUGGEST_CHIPS, "kb")}
           </div>
         ) : (
           /* 평상시: 3개씩 2줄 마키 애니메이션 */
@@ -64,8 +64,8 @@ const SuggestChipGroup = ({ onChipClick }: SuggestChipGroupProps) => {
             key="normal-container"
             className="flex flex-col gap-4 animate-fadeIn"
           >
-            {renderMarqueeRow([...topChips], "top")}
-            {renderMarqueeRow([...bottomChips], "bot")}
+            {renderMarqueeRow(topChips, "top")}
+            {renderMarqueeRow(bottomChips, "bot")}
           </div>
         )}
       </div>
