@@ -1,5 +1,6 @@
 import type React from "react";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const PROSE_STYLE: React.CSSProperties = {
   "--tw-prose-body": "var(--color-header-blue)",
@@ -19,7 +20,7 @@ interface MarkdownContentProps {
 const MarkdownContent = ({ children, className }: MarkdownContentProps) => {
   return (
     <div className={`prose max-w-none ${className ?? ""}`} style={PROSE_STYLE}>
-      <Markdown>{children}</Markdown>
+      <Markdown remarkPlugins={[remarkGfm]}>{children}</Markdown>
     </div>
   );
 };
