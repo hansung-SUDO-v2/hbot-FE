@@ -34,11 +34,26 @@ const Sidebar = ({
   const [searchTerm /*setSearchTerm*/] = useState<string>("");
 
   const expanded = isMobileOverlay ? isSidebarOpen : isExpanded;
+
+  const closeSidebar = () => {
+    if (isMobileOverlay) {
+      if (onToggle && isSidebarOpen) onToggle();
+    } else {
+      setIsExpanded(false);
+    }
+  };
+
   const handleToggle = isMobileOverlay
     ? onToggle
     : () => setIsExpanded(!isExpanded);
 
   const isMobileOnly = isMobileOverlay;
+
+  // 새 채팅 버튼 핸들러
+  const handleNewChat = () => {
+    goTo("/");
+    closeSidebar();
+  };
 
   // 기록 버튼 핸들러
   const handleHistoryClick = () => {
@@ -72,7 +87,7 @@ const Sidebar = ({
       }
     >
       {/* 상단 아이콘 4개 */}
-      <div className="flex flex-col gap-14.5 w-full items-start">
+      <div className="flex flex-col gap-12 w-full items-start">
         {/* 메뉴 버튼 */}
         <IconButton
           icon={expanded ? IcMenuOpen : IcMenuBasic}
@@ -90,9 +105,7 @@ const Sidebar = ({
             icon={IcAdd}
             label="새 채팅"
             isExpanded={expanded}
-            onClick={() => {
-              goTo("/");
-            }}
+            onClick={handleNewChat}
           />
           <SidebarItem
             icon={IcSearch}
@@ -122,7 +135,10 @@ const Sidebar = ({
               style={{ maxHeight: "calc(100vh - 31rem)" }}
             >
               <QueryBoundary loadingFallback={<SidebarSkeleton />}>
-                <ChatListContents keyword={searchTerm} />
+                <ChatListContents
+                  keyword={searchTerm}
+                  onItemClick={closeSidebar}
+                />
               </QueryBoundary>
             </div>
           )}
@@ -135,27 +151,33 @@ const Sidebar = ({
           isMobileOnly && !expanded ? "max-mobile:hidden" : ""
         }`}
       >
+        {/* 설정 버튼 */}
         <button
           type="button"
-          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer group ${
-            expanded ? "px-3 gap-2" : "px-0"
+          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer group overflow-hidden ${
+            expanded ? "px-3 gap-2" : "px-0 justify-center"
           }`}
           onClick={handleSettingClick}
         >
-          <IconButton as="div" icon={IcSetting} alt="setting" size={26} />
+          <div className="flex-none flex items-center justify-center w-6.5 h-6.5">
+            <IconButton as="div" icon={IcSetting} alt="setting" size={26} />
+          </div>
           {expanded && (
-            <span className="text-h5-r text-chat-text shrink-0">설정</span>
+            <span className="text-h5-r text-chat-text truncate">설정</span>
           )}
         </button>
 
+        {/* 프로필 버튼 */}
         <button
           type="button"
-          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer ${
-            expanded ? "px-3 gap-2" : "px-0"
+          className={`flex items-center w-full h-12.5 transition-all duration-300 cursor-pointer overflow-hidden ${
+            expanded ? "px-3 gap-2" : "px-0 justify-center"
           }`}
           onClick={handleProfileClick}
         >
-          <IconButton as="div" icon={IcProfile} alt="profile" />
+          <div className="flex-none flex items-center justify-center w-6.5 h-6.5">
+            <IconButton as="div" icon={IcProfile} alt="profile" />
+          </div>
           {expanded && (
             <div className="flex items-center gap-2 animate-fadeIn overflow-hidden">
               <span className="text-h5-m text-sub shrink-0">홍길동</span>

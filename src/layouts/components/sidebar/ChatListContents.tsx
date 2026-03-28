@@ -4,15 +4,17 @@ import { useGetChatList } from "../../hooks/useQuery/useGetChatList";
 
 interface ChatListContentsProps {
   keyword: string;
+  onItemClick?: () => void;
 }
 
-const ChatListContents = ({ keyword }: ChatListContentsProps) => {
+const ChatListContents = ({ keyword, onItemClick }: ChatListContentsProps) => {
   const { data } = useGetChatList(0, 30, keyword);
   const { chatId } = useParams(); // 현재 선택된 id
   const { goTo } = useNavigation();
 
   const handleChatClick = (id: number) => {
     goTo(`/chat/${id}`);
+    if (onItemClick) onItemClick();
   };
 
   return (
