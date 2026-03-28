@@ -6,13 +6,13 @@ const SUGGEST_CHIPS = [
   {
     id: "suggest-1",
     variant: 1,
-    label: "올해 미디어 디자인 트랙 졸업 요건이 뭐야?",
+    label: "1학기 디자인대학 서면신청 언제야?",
   },
-  { id: "suggest-2", variant: 2, label: "세미나실 이용하려면 어떻게 해?" },
-  { id: "suggest-3", variant: 3, label: "학점은행제가 뭐야?" },
-  { id: "suggest-4", variant: 4, label: "도서관 운영 시간 언제까지야?" },
-  { id: "suggest-5", variant: 5, label: "이번주 학생식당 메뉴 알려줘" },
-  { id: "suggest-6", variant: 6, label: "셔틀버스 시간표 보여줘" },
+  { id: "suggest-2", variant: 2, label: "1학기 학점교류에 대해 알려줘!" },
+  { id: "suggest-3", variant: 3, label: "수강신청 언제야?" },
+  { id: "suggest-4", variant: 4, label: "수업평가 우수강좌 알려줘" },
+  { id: "suggest-5", variant: 5, label: "상상력교양대학 서면신청 언제야?" },
+  { id: "suggest-6", variant: 6, label: "헤이영 어떻게 사용해?" },
 ] as const;
 
 interface SuggestChipGroupProps {
