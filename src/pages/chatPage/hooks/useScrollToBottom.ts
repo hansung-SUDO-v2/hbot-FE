@@ -47,20 +47,29 @@ export const useScrollToBottom = ({
     };
   }, []);
 
-  // 유저 메시지 전송 시 → 유저 메시지 시작 지점으로
-  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll to user message on submit
-  useEffect(() => {
-    if (isSubmitting) {
-      lastUserRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [messages.length]);
+  const prevIsSubmitting = useRef(isSubmitting);
+  const isInitialRender = useRef(true);
 
-  // AI 응답 완료 시 → AI 답변 시작 지점으로
   useEffect(() => {
-    if (!isSubmitting) {
+    // 최초 진입 시
+    if (isInitialRender.current && messages.length > 0) {
+      lastAIRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+      isInitialRender.current = false;
+    }
+    // 유저 메시지 전송 시 → 유저 메시지 시작 지점으로
+    else if (!prevIsSubmitting.current && isSubmitting) {
+      lastUserRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    // AI 응답 완료 시 → AI 답변 시작 지점으로
+    else if (prevIsSubmitting.current && !isSubmitting) {
       lastAIRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }, [isSubmitting]);
+    // 상태 동기화
+    prevIsSubmitting.current = isSubmitting;
+  }, [isSubmitting, messages.length]);
 
   const scrollToBottom = () => {
     const container = scrollContainerRef.current;
