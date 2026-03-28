@@ -30,7 +30,7 @@ export const useChatMessages = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: roomDetail 변경 시에만 실행
   useEffect(() => {
     if (!roomDetail) return;
-    setMessages(toUIMessages(roomDetail.messages, nextId));
+    setMessages(toUIMessages(roomDetail, nextId));
   }, [roomDetail]);
 
   const handleSubmit = async (text: string) => {

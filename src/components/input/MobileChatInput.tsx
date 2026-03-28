@@ -50,7 +50,7 @@ export const MobileChatInput = ({
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder="무엇이든 물어보세요"
-            className="w-full max-h-20 text-mb-r text-chat-text placeholder:text-description bg-transparent border-none outline-none resize-none overflow-hidden flex-1 p-0 m-0"
+            className="w-full max-h-20 text-mb-r leading-[1.4] text-chat-text placeholder:text-description bg-transparent border-none outline-none resize-none overflow-hidden flex-1 p-0 m-0 appearance-none"
           />
 
           <button

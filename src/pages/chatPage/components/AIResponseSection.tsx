@@ -43,7 +43,7 @@ const AIResponseSection = ({
           )}
         </div>
         {!error && tailQuestions.length > 0 && (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 pb-4">
             {tailQuestions.map((q) => (
               <TailQuestion
                 key={q.id}
