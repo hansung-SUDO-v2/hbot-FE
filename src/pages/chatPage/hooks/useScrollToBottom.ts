@@ -1,11 +1,21 @@
 import { useEffect, useRef, useState } from "react";
+import type { ChatMessage } from "@/types/chat.type";
 
 const BOTTOM_THRESHOLD = 10;
 
-export const useScrollToBottom = () => {
+interface UseScrollToBottomProps {
+  messages: ChatMessage[];
+  isSubmitting: boolean;
+}
+
+export const useScrollToBottom = ({
+  messages,
+  isSubmitting,
+}: UseScrollToBottomProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const lastUserRef = useRef<HTMLDivElement>(null);
+  const lastAIRef = useRef<HTMLDivElement>(null);
   const [showScrollBtn, setShowScrollBtn] = useState(false);
 
   const checkShouldShow = () => {
@@ -37,14 +47,32 @@ export const useScrollToBottom = () => {
     };
   }, []);
 
+  // 유저 메시지 전송 시 → 유저 메시지 시작 지점으로
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll to user message on submit
+  useEffect(() => {
+    if (isSubmitting) {
+      lastUserRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [messages.length]);
+
+  // AI 응답 완료 시 → AI 답변 시작 지점으로
+  useEffect(() => {
+    if (!isSubmitting) {
+      lastAIRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [isSubmitting]);
+
   const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
   };
 
   return {
     scrollContainerRef,
     contentRef,
-    bottomRef,
+    lastUserRef,
+    lastAIRef,
     showScrollBtn,
     scrollToBottom,
   };

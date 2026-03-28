@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { ChatInput } from "@/components/input/ChatInput";
 import AIResponseSection from "./components/AIResponseSection";
 import ScrollToBottomButton from "./components/ScrollToBottomButton";
@@ -11,15 +10,14 @@ const ChatPage = () => {
   const {
     scrollContainerRef,
     contentRef,
-    bottomRef,
+    lastUserRef,
+    lastAIRef,
     showScrollBtn,
     scrollToBottom,
-  } = useScrollToBottom();
+  } = useScrollToBottom({ messages, isSubmitting });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll on new message or response complete
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages.length, isSubmitting]);
+  const lastUserIndex = messages.findLastIndex((msg) => !("tailQuestions" in msg));
+  const lastAIIndex = messages.findLastIndex((msg) => "tailQuestions" in msg);
 
   return (
     <div className="flex flex-col h-full">
@@ -29,22 +27,24 @@ const ChatPage = () => {
           ref={contentRef}
           className="flex flex-col gap-10 chat-pl chat-pr pt-10"
         >
-          {messages.map((msg) =>
+          {messages.map((msg, idx) =>
             "tailQuestions" in msg ? (
-              <AIResponseSection
-                key={msg.id}
-                content={msg.content}
-                isLoading={msg.isLoading}
-                tailQuestions={msg.tailQuestions}
-                tailLoading={msg.tailLoading}
-                error={msg.error}
-                onTailQuestionClick={handleSubmit}
-              />
+              <div key={msg.id} ref={idx === lastAIIndex ? lastAIRef : undefined}>
+                <AIResponseSection
+                  content={msg.content}
+                  isLoading={msg.isLoading}
+                  tailQuestions={msg.tailQuestions}
+                  tailLoading={msg.tailLoading}
+                  error={msg.error}
+                  onTailQuestionClick={handleSubmit}
+                />
+              </div>
             ) : (
-              <UserMessage key={msg.id} content={msg.content} />
+              <div key={msg.id} ref={idx === lastUserIndex ? lastUserRef : undefined}>
+                <UserMessage content={msg.content} />
+              </div>
             )
           )}
-          <div ref={bottomRef} />
         </div>
       </div>
 
