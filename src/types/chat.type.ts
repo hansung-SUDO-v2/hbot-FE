@@ -58,6 +58,7 @@ export type GetChatRoomDetailResponse = {
   title: string;
   createdAt: string;
   messages: ChatRoomMessageEntity[];
+  suggestedQuestions?: string[];
 };
 
 // 4. 프론트엔드 UI 상태 타입
